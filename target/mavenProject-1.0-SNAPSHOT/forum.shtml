@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Форум</title>
+    <link rel="stylesheet" href="css/header.css">
+    <!--#include virtual="include/bootstrap-link.txt"-->
+</head>
+<body>
+<!--#include virtual="include/header.txt"-->
+<div class="main"></div>
+<!--#include virtual="include/bootstrap-scripts.txt"-->
+</body>
+</html>

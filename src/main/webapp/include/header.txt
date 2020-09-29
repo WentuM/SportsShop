@@ -1,0 +1,21 @@
+<div><img src="resources/head.png" class="head-image">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col col-lg-1 menu-but">
+                Главная
+            </div>
+            <div class="col col-lg-1 menu-but">
+                Каталог
+            </div>
+            <div class="col col-lg-1 menu-but">
+                Форум
+            </div>
+            <div class="col col-lg-1 menu-but">
+                Корзина
+            </div>
+            <div class="col col-lg-1 menu-but">
+                Профиль
+            </div>
+        </div>
+    </div>
+</div>

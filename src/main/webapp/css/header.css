@@ -1,0 +1,29 @@
+body {
+    background-image: url("../resources/background.png");
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.head-image {
+    width: 100%;
+}
+
+.menu-but {
+    border: 1px solid black;
+    margin-top: -6px;
+    background-size: 2px;
+    margin-right: 2px;
+    margin-left: 2px;
+    height: 30px;
+    text-align: center;
+    font-size: 14px;
+    font-family: "Palatino Linotype", serif;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+}
+
+.menu-but:hover {
+    background: #455e84;
+    border: 1px solid black;
+    opacity: 1;
+}
