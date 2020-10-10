@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col col-lg-1 menu-but">
-                <a href="./main.shtml">Главная</a>
+                Главная
             </div>
             <div class="col col-lg-1 menu-but">
                 Каталог

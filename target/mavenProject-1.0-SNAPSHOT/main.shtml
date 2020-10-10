@@ -4,26 +4,18 @@
     <meta charset="UTF-8">
     <title>Главная страница</title>
     <link rel="stylesheet" href="css/header.css">
-    <style>
-        .main {
-            height: 20000px;
-            width: 900px;
-            border: 1px solid black;
-            background: black;
-            opacity: 0.42;
-            margin: 20px auto 0;
-        }
-    </style>
+    <link rel="stylesheet" href="css/main-content.css">
     <!--#include virtual="include/bootstrap-link.txt"-->
-
 </head>
 
 <body>
 <!--#include virtual="include/header.txt"-->
-<div class="main">
+<div class="main-content">
     <p>
-    <h2>Добро пожаловать в Интернет-магазин спортивного питания "INPROTEIN"</h2></p>
+    <h2>Добро пожаловать в Интернет-магазин спортивного питания "INPROTEIN"</h2>
+    </p>
 </div>
+
 <!--#include virtual="include/bootstrap-scripts.txt"-->
 </body>
 </html>

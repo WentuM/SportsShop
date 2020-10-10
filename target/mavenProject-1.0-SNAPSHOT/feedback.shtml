@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Обратная связь</title>
     <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/main-content.css">
     <!--#include virtual="include/bootstrap-link.txt"-->
 </head>
 <body>
@@ -11,4 +12,4 @@
 <div class="main"></div>
 <!--#include virtual="include/bootstrap-scripts.txt"-->
 </body>
-</html
+</html>

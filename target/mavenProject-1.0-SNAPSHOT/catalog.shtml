@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Каталог</title>
     <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/main-content.css">
     <!--#include virtual="include/bootstrap-link.txt"-->
 </head>
 <body>

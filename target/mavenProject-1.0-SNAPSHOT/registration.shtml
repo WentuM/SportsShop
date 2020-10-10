@@ -4,11 +4,36 @@
     <meta charset="UTF-8">
     <title>Регистрация</title>
     <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/main-content.css">
     <!--#include virtual="include/bootstrap-link.txt"-->
+    <style>
+        .main-content {
+            width: 40%;
+            height: 250px;
+            text-align: center;
+        }
+        .submit {
+            width: auto;
+            padding: 5px 40px;
+            margin-left: 45.5%;
+            border: 0;
+        }
+        input {
+            background: rgba(0, 0, 0, 0.42);
+        }
+    </style>
 </head>
 <body>
 <!--#include virtual="include/header.txt"-->
-<div class="main"></div>
+<form><div class="main-content">
+    <p class="headline">Регистрация</p>
+    <input type="text" placeholder="Name" required><br>
+    <input type="text" placeholder="Number" pattern="^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$" required><br>
+    <input type="password" placeholder="Password" required><br>
+    <input type="file" placeholder="Avatar" required>
+</div>
+    <input class="submit" type="submit" value="Вход">
+</form>
 <!--#include virtual="include/bootstrap-scripts.txt"-->
 </body>
-</html
+</html>

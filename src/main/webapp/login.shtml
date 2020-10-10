@@ -9,7 +9,6 @@
         .main-content {
             width: 40%;
             height: 200px;
-            text-align: center;
         }
         .submit {
             width: auto;
@@ -17,9 +16,7 @@
             margin-left: 45.5%;
             border: 0;
         }
-        input {
-            background: rgba(0, 0, 0, 0.42);
-        }
+
     </style>
     <!--#include virtual="include/bootstrap-link.txt"-->
 </head>
@@ -27,10 +24,10 @@
 <!--#include virtual="include/header.txt"-->
 <form><div class="main-content">
     <p class="headline">Вход в профиль</p>
-    <input type="email" placeholder="Email" required></p>
+    <input type="email" placeholder="Email/Number" required></p>
     <input type="password" placeholder="Password" required></p>
 </div>
-    <input class="submit" type="submit" value="Вход">
+    <input class="submit" type="submit" value="Войти">
 </form>
 <!--#include virtual="include/bootstrap-scripts.txt"-->
 </body>

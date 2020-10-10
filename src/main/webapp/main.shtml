@@ -5,9 +5,6 @@
     <title>Главная страница</title>
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/main-content.css">
-    <style>
-
-    </style>
     <!--#include virtual="include/bootstrap-link.txt"-->
 </head>
 
@@ -15,7 +12,7 @@
 <!--#include virtual="include/header.txt"-->
 <div class="main-content">
     <p>
-    <h2>Добро пожаловать в Интернет-магазин спортивного питания "INPROTEIN"</h2>
+    <h2>Добро пожаловать в Интернет-магазин<br>спортивного питания "INPROTEIN"</h2>
     </p>
 </div>
 

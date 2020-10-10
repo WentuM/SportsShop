@@ -1,14 +1,14 @@
 body {
-    background-image: url("../resources/background.png");
-    background-size: cover;
-    background-attachment: fixed;
+    background: url("../resources/head1.jpeg") center / cover no-repeat fixed;
 }
 
 .head-image {
     width: 100%;
+    padding: 0;
 }
 
 .menu-but {
+    border-radius: 0 0 10px 10px;
     border: 1px solid black;
     margin-top: -6px;
     background-size: 2px;
@@ -18,12 +18,11 @@ body {
     text-align: center;
     font-size: 14px;
     font-family: "Palatino Linotype", serif;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.42);
     color: white;
 }
 
 .menu-but:hover {
     background: #455e84;
-    border: 1px solid black;
     opacity: 1;
 }

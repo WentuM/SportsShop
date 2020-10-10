@@ -6,10 +6,37 @@
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/main-content.css">
     <!--#include virtual="include/bootstrap-link.txt"-->
+    <style>
+        .main-content {
+            width: 40%;
+            height: 325px;
+        }
+        .submit {
+            width: auto;
+            padding: 3px 40px;
+            margin-left: 41.5%;
+            border: 0;
+        }
+
+        input[type="file" i] {
+            overflow: hidden;
+            height: 25px;
+            padding: 0;
+        }
+    </style>
 </head>
 <body>
 <!--#include virtual="include/header.txt"-->
-<div class="main"></div>
+<form><div class="main-content">
+    <p class="headline">Регистрация</p>
+    <div class="inputs"><input type="text" placeholder="Name" required><br></div>
+    <div class="inputs"><input type="email" placeholder="Email" required><br></div>
+    <div class="inputs"><input type="text" placeholder="Number" pattern="^(8|\+7)([0-9]){10}" required><br></div>
+    <div class="inputs"><input type="password" placeholder="Password" required><br></div>
+    <div class="inputs"><input type="file" required></div>
+</div>
+    <input class="submit" type="submit" value="Зарегистрироваться">
+</form>
 <!--#include virtual="include/bootstrap-scripts.txt"-->
 </body>
-</html
+</html>

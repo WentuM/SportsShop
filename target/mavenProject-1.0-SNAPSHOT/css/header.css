@@ -2,6 +2,7 @@ body {
     background-image: url("../resources/background.png");
     background-size: cover;
     background-attachment: fixed;
+    top: 0.28%;
 }
 
 .head-image {
@@ -12,23 +13,18 @@ body {
     border: 1px solid black;
     margin-top: -6px;
     background-size: 2px;
-    opacity: 0.42;
     margin-right: 2px;
     margin-left: 2px;
-    color: white;
     height: 30px;
     text-align: center;
     font-size: 14px;
     font-family: "Palatino Linotype", serif;
-    background: black;
+    background: rgba(0, 0, 0, 0.42);
+    color: white;
 }
 
 .menu-but:hover {
     background: #455e84;
     border: 1px solid black;
-    opacity: 1;
-}
-p {
-    color: black;
     opacity: 1;
 }
