@@ -6,10 +6,43 @@
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/main-content.css">
     <!--#include virtual="include/bootstrap-link.txt"-->
+    <style>
+        .main-content {
+            text-align: left;
+        }
+
+        .profile_photo {
+            border-radius: 20px;
+            margin-bottom: 20px;
+            border: 1px solid black;
+            width: 270px;
+        }
+        p {
+            font-family: "Palatino Linotype", serif;
+        }
+        .submit {
+            margin-left: 43%;
+        }
+    </style>
 </head>
 <body>
 <!--#include virtual="include/header.txt"-->
-<div class="main"></div>
+<div class="main-content"><p class="headline">Мой профиль</p>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <img class="profile_photo" alt="My Photo" src="resources/user.png">
+            </div>
+            <div class="col">
+                <p><b>Информация об этом пользователе</b></p>
+                <p>Имя: <em>Иван Иванов</em></p>
+                <p>Номер телефона: <em>88005553535</em></p>
+                <p>Email: <em>ivan@example.com</em></p>
+            </div>
+        </div>
+    </div>
+</div>
+<div><form><input class="submit" type="button" onclick='location.href="edit.shtml"' value="Редактировать"></form></div>
 <!--#include virtual="include/bootstrap-scripts.txt"-->
 </body>
 </html>

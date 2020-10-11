@@ -9,7 +9,9 @@
 </head>
 <body>
 <!--#include virtual="include/header.txt"-->
-<div class="main"></div>
+<div class="main-content"><form action="mailto:inpr0tein@gmail.com">
+    <input type="email">
+</form></div>
 <!--#include virtual="include/bootstrap-scripts.txt"-->
 </body>
 </html>

@@ -12,10 +12,7 @@
             height: 325px;
         }
         .submit {
-            width: auto;
-            padding: 3px 40px;
             margin-left: 41.5%;
-            border: 0;
         }
 
         input[type="file" i] {
