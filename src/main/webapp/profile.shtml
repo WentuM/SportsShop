@@ -9,6 +9,7 @@
     <style>
         .main-content {
             text-align: left;
+            height: auto;
         }
 
         .profile_photo {

@@ -14,12 +14,6 @@
         .submit {
             margin-left: 41.5%;
         }
-
-        input[type="file" i] {
-            overflow: hidden;
-            height: 25px;
-            padding: 0;
-        }
     </style>
 </head>
 <body>

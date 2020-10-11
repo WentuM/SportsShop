@@ -2,14 +2,33 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Редактирвоание профиля</title>
+    <title>Редактирование профиля</title>
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/main-content.css">
+    <style>
+        .main-content {
+            width: 40%;
+        }
+        .submit {
+            margin-left: 42%;
+        }
+    </style>
     <!--#include virtual="include/bootstrap-link.txt"-->
 </head>
 <body>
 <!--#include virtual="include/header.txt"-->
-<div class="main"></div>
+<form><div class="main-content">
+    <p class="headline">Редактирование профиля</p>
+    <div class="inputs"><input type="text" placeholder="Name"><br></div>
+    <div class="inputs"><input type="email" placeholder="Email"><br></div>
+    <div class="inputs"><input type="text" placeholder="Number" pattern="^(8|\+7)([0-9]){10}"><br></div>
+    <div class="inputs"><input type="password" placeholder="Old Password" required><br></div>
+    <div class="inputs"><input type="password" placeholder="New Password"><br></div>
+    <div class="inputs"><input type="file" required></div>
+</div>
+    <input class="submit" type="submit" value="Принять изменения">
+</form>
+
 <!--#include virtual="include/bootstrap-scripts.txt"-->
 </body>
-</html
+</html>

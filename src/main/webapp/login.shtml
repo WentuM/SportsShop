@@ -24,7 +24,7 @@
 <!--#include virtual="include/header.txt"-->
 <form><div class="main-content">
     <p class="headline">Вход в профиль</p>
-    <input type="email" placeholder="Email/Number" required></p>
+    <input type="email" placeholder="Email" required></p>
     <input type="password" placeholder="Password" required></p>
 </div>
     <input class="submit" type="submit" value="Войти">
