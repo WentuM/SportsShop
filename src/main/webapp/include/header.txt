@@ -8,7 +8,7 @@
                 Каталог
             </div>
             <div class="col col-lg-1 menu-but">
-                Форум
+                Акции
             </div>
             <div class="col col-lg-1 menu-but">
                 Корзина

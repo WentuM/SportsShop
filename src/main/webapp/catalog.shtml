@@ -9,7 +9,7 @@
 </head>
 <body>
 <!--#include virtual="include/header.txt"-->
-<div class="main"></div>
+<div class="main-content"><p class="headline">Каталог</p></div>
 <!--#include virtual="include/bootstrap-scripts.txt"-->
 </body>
 </html>
