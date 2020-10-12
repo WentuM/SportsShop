@@ -5,16 +5,16 @@
                 <a href="main.shtml">Главная</a>
             </div>
             <div class="col col-lg-1 menu-but">
-                Каталог
+                <a href="catalog.shtml">Каталог</a>
             </div>
             <div class="col col-lg-1 menu-but">
                 <a href="promo.shtml">Акции</a>
             </div>
             <div class="col col-lg-1 menu-but">
-                Корзина
+                <a href="basket.shtml">Корзина</a>
             </div>
             <div class="col col-lg-1 menu-but">
-                Профиль
+                <a href="profile.shtml">Профиль</a>
             </div>
         </div>
     </div>

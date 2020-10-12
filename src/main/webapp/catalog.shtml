@@ -35,6 +35,7 @@
             padding: 8px !important;
         }
         .card {
+            height: 186px;
             border: 1px solid black !important;
             background: rgba(255, 255, 255, 0.42) !important;
         }
@@ -96,7 +97,7 @@
                             <td>
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="checkbox" id="low" value="low">
-                                    <label class="form-check-label" for="low">до 500</label>
+                                    <label class="form-check-label" for="low">до 500 рублей</label>
                                 </div>
                             </td>
                         </tr>
@@ -104,7 +105,7 @@
                             <td>
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="checkbox" id="medium" value="medium">
-                                    <label class="form-check-label" for="low">от 500 до 2000</label>
+                                    <label class="form-check-label" for="low">от 500 до 2000 рублей</label>
                                 </div>
                             </td>
                         </tr>
@@ -112,7 +113,7 @@
                             <td>
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="checkbox" id="many" value="many">
-                                    <label class="form-check-label" for="low">от 2000</label>
+                                    <label class="form-check-label" for="low">от 2000 рублей</label>
                                 </div>
                             </td>
                         </tr>
@@ -154,7 +155,7 @@
                                     <p class="card-text">цена</p>
                                 </div>
                             </div>
-                            <input class="submit" type="submit" value="В корзину"></form>
+                            <input class="submit" type="submit" value="Нет в наличии" disabled></form>
                         </div>
                     </div>
                 </div>
