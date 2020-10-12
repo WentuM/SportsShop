@@ -2,13 +2,13 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col col-lg-1 menu-but">
-                Главная
+                <a href="main.shtml">Главная</a>
             </div>
             <div class="col col-lg-1 menu-but">
                 Каталог
             </div>
             <div class="col col-lg-1 menu-but">
-                Акции
+                <a href="promo.shtml">Акции</a>
             </div>
             <div class="col col-lg-1 menu-but">
                 Корзина

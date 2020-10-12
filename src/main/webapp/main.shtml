@@ -6,16 +6,40 @@
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/main-content.css">
     <!--#include virtual="include/bootstrap-link.txt"-->
+    <style>
+        .main-content {
+            font-family: "Palatino Linotype", serif;
+        }
+
+        span {
+            color: brown;
+        }
+
+        .description {
+            padding-left: 30px;
+            padding-right: 30px;
+        }
+    </style>
 </head>
 
 <body>
 <!--#include virtual="include/header.txt"-->
-<div class="main-content">
-    <p>
-    <h2>Добро пожаловать в Интернет-магазин<br>спортивного питания "INPROTEIN"</h2>
-    </p>
+<div class="main-content"><p class="headline">Добро пожаловать в INPROTEIN!</p>
+    <div class="description">
+        <p>
+        Занятия спортом – дело хорошее, но для того,
+        чтобы достичь необходимых результатов подход к спорту должен быть грамотным.
+        <span>Особое внимание нужно уделить питанию</span>, так как именно необходимое
+        количество питательных веществ позволяет добиться необходимого эффекта
+        при спортивных тренировках.
+        </p>
+        <p>
+            Наш магазин предлагает <span>широкий спектр</span> разного рода биологически активных добавок
+            к пище, что помогут Вам правильно выстроить свой рацион и поспособствуют
+            достижению необходимых резульятов.
+        </p>
+    </div>
+    <!--#include virtual="include/bootstrap-scripts.txt"-->
 </div>
-
-<!--#include virtual="include/bootstrap-scripts.txt"-->
 </body>
 </html>

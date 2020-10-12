@@ -1,11 +1,10 @@
 body {
     background: url("../resources/background.jpeg") center / cover no-repeat fixed;
-    font-family: "Palatino Linotype", serif;
 }
 
 .head-image {
     width: 100%;
-    padding: 0;
+
 }
 
 .menu-but {
@@ -26,4 +25,8 @@ body {
 .menu-but:hover {
     background: #455e84;
     opacity: 1;
+}
+a {
+    color: white !important;
+    text-decoration: none !important;
 }
