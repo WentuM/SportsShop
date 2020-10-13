@@ -39,6 +39,15 @@
             border: 1px solid black !important;
             background: rgba(255, 255, 255, 0.42) !important;
         }
+        card:hover {
+            box-shadow: 0 0 10px rgb(0,0,0); !important;
+        }
+        .search-but {
+            margin-bottom: 5px;
+        }
+        .search-but:hover {
+            background: #455e84;
+        }
     </style>
     <!--#include virtual="include/bootstrap-link.txt"-->
 </head>
@@ -71,7 +80,7 @@
                             <td>
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="checkbox" id="izo" value="izo">
-                                    <label class="form-check-label" for="protein">Изотропы</label>
+                                    <label class="form-check-label" for="protein">Изотоник</label>
                                 </div>
                             </td>
                         </tr>
@@ -117,7 +126,7 @@
                                 </div>
                             </td>
                         </tr>
-                        <th>По наличию</th>
+                        <th>По наличию:</th>
                         <tr>
                             <td>
                                 <div class="form-check form-check-inline">
@@ -128,17 +137,17 @@
                         </tr>
 
                     </table>
-                    <input class="sub" type="submit" value="Принять" style="margin-bottom: 5px"></form>
+                    <input class="sub" type="submit" value="Принять"></form>
             </div>
-            <div class="col-sm-8" style="border-left: 1px solid black"><input class="search"
-                                                                              placeholder="Поиск по продукции..."
-                                                                              type="search">
+            <div class="col-sm-8" style="border-left: 1px solid black"><form><input class="search"
+                                                                              placeholder="Поиск по названию..."
+                                                                              type="search"><input type="submit"  class="search-but" value="Искать" style="margin-left: 5px"></form>
                 <div class="container">
                     <div class="row">
                         <div class="col"> <!--Общее для всех продуктов-->
                             <div class="card">
                                 <input type="hidden" name="product" value="id"/> <!--Скрытое поле, результат чего отправляется на сервак при нажатии кнопки; value - PK продукта-->
-                                <img class="card-img-top" src="resources/protein.jpg" alt="Card image cap">
+                                <img class="card-img-top" src="resources/protein2.png" alt="Card image cap">
                                 <div class="card-body">
                                     <h5 class="card-title">Название продукта</h5>
                                     <p class="card-text">цена</p>
@@ -147,9 +156,9 @@
                             <input class="submit" type="submit" value="В корзину">
                         </div>
                         <div class="col">
-                            <form ><div class="card">
+                            <form><div class="card">
                                 <input type="hidden" name="product" value="id"/> <!--Скрытое поле, результат чего отправляется на сервак при нажатии кнопки; value - PK продукта-->
-                                <img class="card-img-top" src="resources/background.jpeg" alt="Card image cap">
+                                <img class="card-img-top" src="resources/protein2.png" alt="Card image cap">
                                 <div class="card-body">
                                     <h5 class="card-title">Название продукта</h5>
                                     <p class="card-text">цена</p>

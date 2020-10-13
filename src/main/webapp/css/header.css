@@ -1,5 +1,6 @@
 body {
     background: url("../resources/background.jpeg") center / cover no-repeat fixed;
+    font-family: "Palatino Linotype", serif !important;
 }
 
 .head-image {
