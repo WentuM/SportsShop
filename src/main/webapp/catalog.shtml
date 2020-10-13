@@ -5,7 +5,11 @@
     <title>Каталог</title>
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/main-content.css">
+    <link rel="stylesheet" href="css/footer.css">
     <style>
+        .main-content {
+            border-bottom: 0;
+        }
         table {
             text-align: left;
         }
@@ -172,6 +176,7 @@
         </div>
     </div>
 </div>
+<!--#include virtual="include/footer.txt"-->
 <!--#include virtual="include/bootstrap-scripts.txt"-->
 </body>
 </html>

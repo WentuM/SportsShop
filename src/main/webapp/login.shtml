@@ -5,6 +5,7 @@
     <title>Вход</title>
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/main-content.css">
+    <link rel="stylesheet" href="css/footer.css">
     <style>
         .main-content {
             width: 40%;
@@ -29,6 +30,7 @@
 </div>
     <input class="submit" type="submit" value="Войти">
 </form>
+<!--#include virtual="include/footer.txt"-->
 <!--#include virtual="include/bootstrap-scripts.txt"-->
 </body>
 </html>

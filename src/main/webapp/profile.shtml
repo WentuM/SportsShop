@@ -5,6 +5,7 @@
     <title>Профиль</title>
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/main-content.css">
+    <link rel="stylesheet" href="css/footer.css">
     <!--#include virtual="include/bootstrap-link.txt"-->
     <style>
         .main-content {
@@ -23,6 +24,7 @@
         }
         .submit {
             margin-left: 43%;
+            margin-bottom: 30px;
         }
     </style>
 </head>
@@ -34,16 +36,17 @@
             <div class="col">
                 <img class="profile_photo" alt="My Photo" src="resources/user.png">
             </div>
-            <div class="col">
+            <div class="col" style="border-left: 1px solid black">
                 <p><b>Информация об этом пользователе</b></p>
-                <p>Имя: <em>Иван Иванов</em></p>
-                <p>Номер телефона: <em>88005553535</em></p>
-                <p>Email: <em>ivan@example.com</em></p>
+                <p>Имя: <em>Иван Иванов</em><br>
+                 Номер телефона: <em>88005553535</em><br>
+                Email: <em>ivan@example.com</em><br></p>
             </div>
         </div>
     </div>
 </div>
 <div><form><input class="submit" type="button" onclick='location.href="edit.shtml"' value="Редактировать"></form></div>
+<!--#include virtual="include/footer.txt"-->
 <!--#include virtual="include/bootstrap-scripts.txt"-->
 </body>
 </html>

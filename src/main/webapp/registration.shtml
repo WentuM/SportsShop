@@ -5,6 +5,7 @@
     <title>Регистрация</title>
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/main-content.css">
+    <link rel="stylesheet" href="css/footer.css">
     <!--#include virtual="include/bootstrap-link.txt"-->
     <style>
         .main-content {
@@ -28,6 +29,7 @@
 </div>
     <input class="submit" type="submit" value="Зарегистрироваться">
 </form>
+<!--#include virtual="include/footer.txt"-->
 <!--#include virtual="include/bootstrap-scripts.txt"-->
 </body>
 </html>

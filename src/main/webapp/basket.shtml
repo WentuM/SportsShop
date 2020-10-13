@@ -5,6 +5,7 @@
     <title>Корзина</title>
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/main-content.css">
+    <link rel="stylesheet" href="css/footer.css">
     <style>
         td {
             border-top: none !important;
@@ -16,6 +17,7 @@
         }
         .submit {
             margin-left: 44%;
+            width: 150px;
         }
     </style>
     <!--#include virtual="include/bootstrap-link.txt"-->
@@ -55,7 +57,8 @@
     </table>
     <p style="margin-bottom: 5px"><em>Суммарная цена: 2350 рублей</em></p>
 </div>
-<input type="submit" value="Оформить" class="submit">
+<input class="submit" type="submit" value="Оформить" >
+<!--#include virtual="include/footer.txt"-->
 <!--#include virtual="include/bootstrap-scripts.txt"-->
 </body>
 </html>

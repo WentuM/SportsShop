@@ -5,11 +5,13 @@
     <title>Профиль</title>
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/main-content.css">
+    <link rel="stylesheet" href="css/footer.css">
     <!--#include virtual="include/bootstrap-link.txt"-->
 </head>
 <body>
 <!--#include virtual="include/header.txt"-->
-<div class="main"></div>
+<div class="main-content"><p class="headline">Оформление</p></div>
+<!--#include virtual="include/footer.txt"-->
 <!--#include virtual="include/bootstrap-scripts.txt"-->
 </body>
 </html>

@@ -5,11 +5,13 @@
     <title>Информация о товаре</title>
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/main-content.css">
+    <link rel="stylesheet" href="css/footer.css">
     <style>
         .main-content {
             text-align: left;
             height: auto;
             padding-bottom: 20px;
+            border-bottom: 0;
         }
 
         .product_photo {
@@ -70,6 +72,12 @@
             border-radius: 5px;
             font-size: small;
         }
+        .send {
+            font-size: 12px;
+        }
+        .send:hover {
+            background: #455e84;
+        }
     </style>
     <!--#include virtual="include/bootstrap-link.txt"-->
 </head>
@@ -81,7 +89,7 @@
             <div class="col-sm-8">
                 <img class="product_photo" src="resources/protein2.png">
                 <form><div class="review"><h6>Оставить отзыв:</h6><textarea rows="5" placeholder="Введите текст..."></textarea></div>
-                <input type="submit" value="Отправить" style="margin-left: 40.5%; margin-bottom: 30px"></form>
+                <input class="send" type="submit" value="Отправить" style="margin-left: 40.5%; margin-bottom: 30px"></form>
                 <div class="reviews"><h6>Все отзывы:</h6>
                     <div class="message">
                         Имя пользователя: Вася<br>
@@ -101,13 +109,13 @@
                             </tr>
                             <tr>
                                 <td></td>
-                                <td><input type="submit" value="В корзину" style="font-size: 12px; margin-left: 10px">
+                                <td><input type="submit" value="В корзину" style="margin-left: 10px" class="send">
                                 </td>
                             </tr>
                         </table>
                     </form>
                 </div>
-                <div style="padding: 5px; border-left: 1px solid black;"><div id="accordion">
+                <div style="padding: 5px; border-left: 1px solid black; border-bottom: 1px solid black""><div id="accordion">
                     <div class="card">
                         <div class="card-header" id="headingOne">
                             <h5 class="mb-0">
@@ -144,6 +152,7 @@
         </div>
     </div>
 </div>
+<!--#include virtual="include/footer.txt"-->
 <!--#include virtual="include/bootstrap-scripts.txt"-->
 </body>
 </html>

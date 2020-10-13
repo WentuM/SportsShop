@@ -1,0 +1,11 @@
+.footer {
+    border-top: 1px solid black;
+    background: #455e84;
+    text-align: center;
+    width: 100%;
+    flex-shrink: 0;
+    font-size: 12px;
+}
+.def {
+    flex-grow: 1;
+}

@@ -1,6 +1,12 @@
 body {
     background: url("../resources/background.jpeg") center / cover no-repeat fixed;
     font-family: "Palatino Linotype", serif !important;
+
+    min-height: 100vh;
+    margin: 0;
+
+    display: flex;
+    flex-direction: column;
 }
 
 .head-image {
@@ -21,6 +27,7 @@ body {
     font-family: "Palatino Linotype", serif;
     background: rgba(0, 0, 0, 0.42);
     color: white;
+
 }
 
 .menu-but:hover {
