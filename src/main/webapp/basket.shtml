@@ -18,6 +18,7 @@
         .submit {
             margin-left: 44%;
             width: 150px;
+            margin-bottom: 30px;
         }
     </style>
     <!--#include virtual="include/bootstrap-link.txt"-->
