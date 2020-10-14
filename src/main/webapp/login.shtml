@@ -17,6 +17,9 @@
             margin-left: 45.5%;
             border: 0;
         }
+        input[type=checkbox], input[type=radio] {
+            margin-top: 0;
+        }
     </style>
     <!--#include virtual="include/bootstrap-link.txt"-->
 </head>
@@ -27,6 +30,10 @@
     <p class="headline">Вход в профиль</p>
     <input type="email" placeholder="Email" required></p>
     <input type="password" placeholder="Password" required></p>
+    <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="remember_me">
+        <label class="form-check-label" for="remember_me">Запомнить меня</label>
+    </div>
 </div>
     <input class="submit" type="submit" value="Войти">
 </form>
