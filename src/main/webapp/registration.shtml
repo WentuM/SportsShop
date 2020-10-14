@@ -28,7 +28,7 @@
     <div class="inputs"><input type="email" placeholder="Email" required><br><small>*Пример: example@ex.com</small></div>
 
     <div class="inputs"><input type="text" placeholder="Number" pattern="^(8/+7)([0-9]){10}" required><br><small>*Без разделителей, 8../+7..</small></div>
-    <div class="inputs"><input type="password" placeholder="Password" pattern="/(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*]{6,}/g" required><br><small>*Не менее 6 символов</small></div>
+    <div class="inputs"><input type="password" placeholder="Password" required><br><small>*Не менее 6 символов</small></div>
     <div class="inputs"><input type="file" accept="image/jpeg, image/png" required></div>
 </div>
     <input class="submit" type="submit" value="Зарегистрироваться">
