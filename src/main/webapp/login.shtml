@@ -34,6 +34,7 @@
         <input type="checkbox" class="form-check-input" id="remember_me">
         <label class="form-check-label" for="remember_me">Запомнить меня</label>
     </div>
+    <a href="#" style="margin: 0 auto; color: black !important; font-size: 12px !important;">Зарегистрируйтесь здесь</a>
 </div>
     <input class="submit" type="submit" value="Войти">
 </form>

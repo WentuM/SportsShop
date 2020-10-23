@@ -33,6 +33,7 @@
             <th scope="col">Название</th>
             <th scope="col">Цена </th>
             <th scope="col">Кол-во</th>
+            <th scope="col">-</th>
         </tr>
         </thead>
         <tbody>
@@ -41,18 +42,21 @@
             <td>Витаминки</td>
             <td>2000</td>
             <td>1</td>
+            <td><input type="submit" value="Удалить"></td>
         </tr>
         <tr>
             <th scope="row">2</th>
             <td>Батончик</td>
             <td>150</td>
             <td>4</td>
+            <td><input type="submit" value="Удалить"></td>
         </tr>
         <tr>
             <th scope="row">3</th>
             <td>Изотроп</td>
             <td>200</td>
             <td>1</td>
+            <td><input type="submit" value="Удалить"></td>
         </tr>
         </tbody>
     </table>
