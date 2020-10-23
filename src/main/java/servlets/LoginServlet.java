@@ -11,7 +11,6 @@ import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
-import javax.sql.DataSource;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -21,7 +20,6 @@ public class LoginServlet extends HttpServlet {
     private UsersService usersService;
     @Override
     public void init(ServletConfig config) throws ServletException {
-        DataSource dataSource = (DataSource) config.getServletContext().getAttribute("datasource");
         UserDaoImpl userDao = new UserDaoImpl();
         usersService = new UsersServiceImpl(userDao);
     }
@@ -82,10 +80,9 @@ public class LoginServlet extends HttpServlet {
 
             // Если пользователь выбирает функцию "Remember me".
             if (remember) {
-                Cookie cookie = new Cookie("checked", "remember");
-                cookie.setMaxAge(60*60*24*365);
-                response.addCookie(cookie);
                 Cookie cookieUser = new Cookie("userEmail", user.getEmail());
+                cookieUser.setMaxAge(60*60*24*365);
+                response.addCookie(cookieUser);
             }
 
             // Redirect (Перенаправить) на страницу /userInfo.

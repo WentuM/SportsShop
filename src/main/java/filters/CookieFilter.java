@@ -1,6 +1,10 @@
 package filters;
 
+import dao.UserDaoImpl;
+import model.User;
 import mysql.MyUtils;
+import services.UsersService;
+import services.UsersServiceImpl;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
@@ -9,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.SQLException;
 
 @WebFilter(filterName = "cookieFilter", urlPatterns = { "/*" })
 public class CookieFilter implements Filter {
@@ -46,14 +51,23 @@ public class CookieFilter implements Filter {
         Cookie[] cookies = req.getCookies();
         if (cookies != null) {
             for (Cookie cookie : cookies) {
-                if ("checked".equals(cookie.getName())) {
+                if ("userEmail".equals(cookie.getName())) {
                     flag = cookie.getValue();
                 }
             }
         }
-//        if (flag != null) {
-//            session.setAttribute("");
-//        }
+        User user = new User();
+        if (flag != null) {
+            UserDaoImpl userDao = new UserDaoImpl();
+            UsersService usersService = new UsersServiceImpl(userDao);
+            try {
+                user = usersService.findByEmail(flag);
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+
+            session.setAttribute("loginedUser", user);
+        }
 
 
         // Флаг(flag) для проверки Cookie.
