@@ -1,44 +1,59 @@
 package servlets;
 
-import mysql.DBUtils;
-import mysql.MyUtils;
+import dao.UserDaoImpl;
+import model.User;
+import mysql.MySQLConnUtils;
+import services.UsersService;
+import services.UsersServiceImpl;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
+import javax.sql.DataSource;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-@WebServlet(urlPatterns = "/login")
+@WebServlet(urlPatterns = {"/login"})
 public class LoginServlet extends HttpServlet {
-    private static final long serialVersionUID = 1L;
+    private UsersService usersService;
+    @Override
+    public void init(ServletConfig config) throws ServletException {
+        DataSource dataSource = (DataSource) config.getServletContext().getAttribute("datasource");
+        UserDaoImpl userDao = new UserDaoImpl();
+        usersService = new UsersServiceImpl(userDao);
+    }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String userName = request.getParameter("email");
+        String email = request.getParameter("email");
         String password = request.getParameter("password");
         String rememberMeStr = request.getParameter("rememberMe");
         boolean remember = "Y".equals(rememberMeStr);
 
-        UserAccount user = null;
+        User user = null;
         boolean hasError = false;
         String errorString = null;
 
-        if (userName == null || password == null || userName.length() == 0 || password.length() == 0) {
+        if (email == null || password == null || email.length() == 0 || password.length() == 0) {
             hasError = true;
-            errorString = "Required username and password!";
+            errorString = "Заполните все поля авторизации";
         } else {
-            Connection conn = MyUtils.getStoredConnection(request);
+            try {
+                Connection conn = MySQLConnUtils.getMySQLConnection();
+            } catch (ClassNotFoundException | SQLException e) {
+                e.printStackTrace();
+            }
             try {
                 // Найти user в DB.
-                user = DBUtils.findUser(conn, userName, password);
+                user = usersService.findByEmail(email);
 
                 if (user == null) {
                     hasError = true;
-                    errorString = "User Name or password invalid";
+                    errorString = "Почта или пароль были введены неверно";
                 }
 
             } catch (SQLException e) {
@@ -50,16 +65,12 @@ public class LoginServlet extends HttpServlet {
         // В случае, если есть ошибка,
         // forward (перенаправить) к /WEB-INF/views/login.jsp
         if (hasError) {
-            user = new UserAccount();
-            user.setUserName(userName);
-            user.setPassword(password);
 
             // Сохранить информацию в request attribute перед forward.
             request.setAttribute("errorString", errorString);
-            request.setAttribute("user", user);
 
             // Forward (перенаправить) к странице /WEB-INF/views/login.jsp
-            RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/views/loginView.jsp");
+            RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/login");
             dispatcher.forward(request, response);
         }
         // В случае, если нет ошибки.
@@ -67,19 +78,18 @@ public class LoginServlet extends HttpServlet {
         // И перенаправить к странице userInfo.
         else {
             HttpSession session = request.getSession();
-            MyUtils.storeLoginedUser(session, user);
+            session.setAttribute("userId", user.getId());
 
             // Если пользователь выбирает функцию "Remember me".
             if (remember) {
-                MyUtils.storeUserCookie(response, user);
-            }
-            // Наоборот, удалить Cookie
-            else {
-                MyUtils.deleteUserCookie(response);
+                Cookie cookie = new Cookie("checked", "remember");
+                cookie.setMaxAge(60*60*24*365);
+                response.addCookie(cookie);
+                Cookie cookieUser = new Cookie("userEmail", user.getEmail());
             }
 
             // Redirect (Перенаправить) на страницу /userInfo.
-            response.sendRedirect(request.getContextPath() + "/main.shtml");
+            response.sendRedirect(request.getContextPath() + "/main");
         }
     }
 
@@ -103,6 +113,6 @@ public class LoginServlet extends HttpServlet {
         }
         HttpSession httpSession = req.getSession();
 
-        getServletContext().getRequestDispatcher("/login.ftl").forward(req, resp);
+        req.getServletContext().getRequestDispatcher("/login.ftl").forward(req, resp);
     }
 }

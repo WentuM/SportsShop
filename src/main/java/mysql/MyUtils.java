@@ -1,5 +1,7 @@
 package mysql;
 
+import model.User;
+
 import javax.servlet.ServletRequest;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -26,21 +28,21 @@ public class MyUtils {
     }
 
     // Сохранить информацию пользователя, который вошел в систему (login) в Session.
-    public static void storeLoginedUser(HttpSession session, UserAccount loginedUser) {
+    public static void storeLoginedUser(HttpSession session, User loginedUser) {
         // В JSP можно получить доступ через ${loginedUser}
         session.setAttribute("loginedUser", loginedUser);
     }
 
     // Получить информацию пользователя, сохраненная в Session.
-    public static UserAccount getLoginedUser(HttpSession session) {
-        UserAccount loginedUser = (UserAccount) session.getAttribute("loginedUser");
-        return loginedUser;
+    public static User getLoginedUser(HttpSession session) {
+        return (User) session.getAttribute("loginedUser");
     }
 
     // Сохранить информацию пользователя в Cookie.
-    public static void storeUserCookie(HttpServletResponse response, UserAccount user) {
+    //неправильный
+    public static void storeUserCookie(HttpServletResponse response, User user) {
         System.out.println("Store user cookie");
-        Cookie cookieUserName = new Cookie(ATT_NAME_USER_NAME, user.getUserName());
+        Cookie cookieUserName = new Cookie(ATT_NAME_USER_NAME, user.toString());
         // 1 день (Конвертированный в секунды)
         cookieUserName.setMaxAge(24 * 60 * 60);
         response.addCookie(cookieUserName);
@@ -61,7 +63,7 @@ public class MyUtils {
     // Удалить Cookie пользователя
     public static void deleteUserCookie(HttpServletResponse response) {
         Cookie cookieUserName = new Cookie(ATT_NAME_USER_NAME, null);
-        // 0 секунд. (Данный Cookie будет сразу недействителен)
+        // 1 секунд. (Данный Cookie будет сразу недействителен)
         cookieUserName.setMaxAge(1);
         response.addCookie(cookieUserName);
     }

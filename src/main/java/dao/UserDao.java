@@ -5,7 +5,7 @@ import model.User;
 import java.sql.SQLException;
 import java.util.List;
 
-interface UserDAO {
+public interface UserDao {
     public static final String SQL_FIND_ALL = "select * from " + User.TABLE_NAME;
     public static final String SQL_FIND_BY_ID = SQL_FIND_ALL + " where " + User.ID_COLUMN + " = ?";
     public static final String SQL_FIND_BY_NAME = SQL_FIND_ALL + " where " + User.NAME_COLUMN + " = ?";

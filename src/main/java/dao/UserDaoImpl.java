@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserDaoImpl implements UserDAO{
+public class UserDaoImpl implements UserDao {
     private DataSource dataSource;
 
     @Override
