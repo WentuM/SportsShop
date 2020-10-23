@@ -7,7 +7,6 @@ import services.UsersService;
 import services.UsersServiceImpl;
 
 import javax.servlet.*;
-import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -15,7 +14,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-@WebFilter(filterName = "cookieFilter", urlPatterns = { "/*" })
+//@WebFilter(filterName = "cookieFilter", urlPatterns = { "/*" })
 public class CookieFilter implements Filter {
 
     public CookieFilter() {

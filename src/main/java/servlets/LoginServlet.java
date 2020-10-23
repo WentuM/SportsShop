@@ -92,23 +92,23 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Cookie[] cookies = req.getCookies();
-        String email = null;
-        String password = null;
-
-        for (int i = 0; i < cookies.length; i++) {
-            if (cookies[i].getName().equals("email")) {
-                email = cookies[i].getValue();
-            }
-            if (cookies[i].getName().equals("password")) {
-                password = cookies[i].getValue();
-            }
-        }
-        if (email != null && password != null) {
-            req.setAttribute("email", email);
-            req.setAttribute("password", password);
-        }
-        HttpSession httpSession = req.getSession();
+//        Cookie[] cookies = req.getCookies();
+//        String email = null;
+//        String password = null;
+//
+//        for (int i = 0; i < cookies.length; i++) {
+//            if (cookies[i].getName().equals("email")) {
+//                email = cookies[i].getValue();
+//            }
+//            if (cookies[i].getName().equals("password")) {
+//                password = cookies[i].getValue();
+//            }
+//        }
+//        if (email != null && password != null) {
+//            req.setAttribute("email", email);
+//            req.setAttribute("password", password);
+//        }
+//        HttpSession httpSession = req.getSession();
 
         req.getServletContext().getRequestDispatcher("/login.ftl").forward(req, resp);
     }
