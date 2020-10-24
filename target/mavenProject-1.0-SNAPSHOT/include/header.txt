@@ -1,0 +1,22 @@
+
+<div><img src="resources/head.png" class="head-image">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col col-lg-1 menu-but">
+                <a href="main.shtml">Главная</a>
+            </div>
+            <div class="col col-lg-1 menu-but">
+                <a href="catalog.shtml">Каталог</a>
+            </div>
+            <div class="col col-lg-1 menu-but">
+                <a href="promo.shtml">Акции</a>
+            </div>
+            <div class="col col-lg-1 menu-but">
+                <a href="basket.shtml">Корзина</a>
+            </div>
+            <div class="col col-lg-1 menu-but">
+                <a href="profile.shtml">Профиль</a>
+            </div>
+        </div>
+    </div>
+</div>

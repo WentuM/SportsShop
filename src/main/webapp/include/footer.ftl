@@ -1,0 +1,7 @@
+<#macro footer>
+<div class="def"></div>
+<footer class="footer">
+    @INPROTEIN 2020<br>
+    г. Казань, Кремлёвская 35
+</footer>
+</#macro>

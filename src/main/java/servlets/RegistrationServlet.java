@@ -2,7 +2,6 @@ package servlets;
 
 import dao.UserDaoImpl;
 import model.User;
-import mysql.MySQLConnUtils;
 import services.UsersService;
 import services.UsersServiceImpl;
 
@@ -14,9 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.sql.DataSource;
 import java.io.IOException;
-import java.sql.Connection;
 import java.sql.SQLException;
 
 @WebServlet(urlPatterns = {"/register"})
@@ -25,7 +22,6 @@ public class RegistrationServlet extends HttpServlet {
 
     @Override
     public void init(ServletConfig config) throws ServletException {
-        DataSource dataSource = (DataSource) config.getServletContext().getAttribute("datasource");
         UserDaoImpl userDao = new UserDaoImpl();
         usersService = new UsersServiceImpl(userDao);
     }
@@ -44,19 +40,14 @@ public class RegistrationServlet extends HttpServlet {
         User user = null;
         boolean hasError = false;
         String errorString = null;
-        boolean regularEmail = email.matches("");
-        boolean regularPassword = email.matches("");
+//        boolean regularEmail = email.matches("");
+//        boolean regularPassword = email.matches("");
 
         if (email == null || email.length() == 0 || name == null || name.length() == 0 ||
                 password == null || password.length() == 0 || number == null || number.length() == 0) {
             hasError = true;
             errorString = "Заполните все поля формы регистрации";
         } else {
-            try {
-                Connection conn = MySQLConnUtils.getMySQLConnection();
-            } catch (ClassNotFoundException | SQLException e) {
-                e.printStackTrace();
-            }
             try {
                 // Найти user в DB.
                 user = usersService.findByEmail(email);
@@ -79,8 +70,7 @@ public class RegistrationServlet extends HttpServlet {
             // Сохранить информацию в request attribute перед forward.
             request.setAttribute("errorString", errorString);
 
-            // Forward (перенаправить) к странице /WEB-INF/views/login.jsp
-            RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/register");
+            RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/login");
             dispatcher.forward(request, response);
         }
         // В случае, если нет ошибки.
@@ -91,14 +81,21 @@ public class RegistrationServlet extends HttpServlet {
             user = new User();
             user.setEmail(email);
             user.setName(name);
-            user.setPassword(password);
             user.setNumber(number);
-//                    user.setId();
-            session.setAttribute("loginedUser", user);
+            user.setId((long) 1);
+            user.setPassword(password);
+            user.setEmail(email);
+            try {
+                usersService.createUser(user);
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+            session.setAttribute("loginedUser", user.getId());
+
 //            session.setAttribute("userId", user.getId());
 
             // Redirect (Перенаправить) на страницу /userInfo.
-            response.sendRedirect(request.getContextPath() + "/main");
+            response.sendRedirect("/main");
         }
     }
 }

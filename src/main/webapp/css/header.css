@@ -1,0 +1,40 @@
+body {
+    background: url("/resources/background.jpeg") center / cover no-repeat fixed;
+    font-family: "Palatino Linotype", serif !important;
+
+    min-height: 100vh;
+    margin: 0;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.head-image {
+    width: 100%;
+
+}
+
+.menu-but {
+    border-radius: 0 0 10px 10px;
+    border: 1px solid black;
+    margin-top: -6px;
+    background-size: 2px;
+    margin-right: 2px;
+    margin-left: 2px;
+    height: 30px;
+    text-align: center;
+    font-size: 14px;
+    font-family: "Palatino Linotype", serif;
+    background: rgba(0, 0, 0, 0.42);
+    color: white;
+
+}
+
+.menu-but:hover {
+    background: #455e84;
+    opacity: 1;
+}
+a {
+    color: white !important;
+    text-decoration: none !important;
+}

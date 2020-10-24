@@ -29,8 +29,8 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
-    public void insert(User item) throws SQLException {
-
+    public void createUser(User item) throws SQLException {
+        userDao.insert(item);
     }
 
     @Override

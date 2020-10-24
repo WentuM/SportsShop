@@ -42,7 +42,7 @@ public class LoginServlet extends HttpServlet {
         } else {
             try {
                 Connection conn = MySQLConnUtils.getMySQLConnection();
-            } catch (ClassNotFoundException | SQLException e) {
+            } catch (ClassNotFoundException | SQLException | IllegalAccessException | InstantiationException e) {
                 e.printStackTrace();
             }
             try {

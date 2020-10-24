@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class MySQLConnUtils {
 
     public static Connection getMySQLConnection()
-            throws ClassNotFoundException, SQLException {
+            throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
         String hostName = "localhost";
         String dbName = "sport_db";
         String userName = "root";
@@ -17,15 +17,14 @@ public class MySQLConnUtils {
 
     public static Connection getMySQLConnection(String hostName, String dbName,
                                                 String userName, String password) throws SQLException,
-            ClassNotFoundException {
+            ClassNotFoundException, IllegalAccessException, InstantiationException {
 
-        Class.forName("com.mysql.jdbc.Driver");
+        Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
 
         // Структура URL Connection для MySQL:
-        String connectionURL = "jdbc:mysql://" + hostName + ":3306/" + dbName;
+        String connectionURL = "jdbc:mysql://" + hostName + ":3306/" + dbName + "?serverTimezone=Europe/Moscow&useSSL=false";
 
-        Connection conn = DriverManager.getConnection(connectionURL, userName,
+        return DriverManager.getConnection(connectionURL, userName,
                 password);
-        return conn;
     }
 }
