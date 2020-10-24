@@ -2,19 +2,21 @@ package filters;
 
 import dao.UserDaoImpl;
 import model.User;
-import mysql.MyUtils;
 import services.UsersService;
 import services.UsersServiceImpl;
 
 import javax.servlet.*;
+import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.sql.Connection;
 import java.sql.SQLException;
 
-//@WebFilter(filterName = "cookieFilter", urlPatterns = { "/*" })
+@WebFilter(filterName = "cookieFilter", urlPatterns = {
+        "/main", "/profile", "/basket",  "/catalog", "/editProfile",
+            "/promo"})
+
 public class CookieFilter implements Filter {
 
     public CookieFilter() {
@@ -44,9 +46,7 @@ public class CookieFilter implements Filter {
 //            return;
 //        }
 
-        // Connection создан в JDBCFilter.
         String flag = "";
-        Connection conn = MyUtils.getStoredConnection(request);
         Cookie[] cookies = req.getCookies();
         if (cookies != null) {
             for (Cookie cookie : cookies) {
@@ -64,8 +64,9 @@ public class CookieFilter implements Filter {
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
-
-            session.setAttribute("loginedUser", user);
+            if (user != null) {
+                session.setAttribute("loginedUser", user.getId());
+            }
         }
 
 

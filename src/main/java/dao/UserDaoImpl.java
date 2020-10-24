@@ -13,7 +13,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public List<User> findAll() throws SQLException {
-        String sql = "SELECT * FROM user; ";
+        String sql = "SELECT * FROM user";
         List<User> result = new ArrayList<>();
         Connection connection = null;
         try {
@@ -41,8 +41,8 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public User findById(Long id) throws SQLException {
-        String sql = "SELECT a, FROM user a "//
-                + " WHEN a.id = ?;";
+        //language=SQL
+        String sql = "SELECT * FROM user_table WHERE user_id = ?";
         User user = null;
         Connection connection = null;
         try {
@@ -75,8 +75,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public User findByEmail(String email) throws SQLException {
         //language=SQL
-        String sql = "SELECT a.email, FROM user a "//
-                + " WHERE a.email = ?;";
+        String sql = "SELECT * FROM user WHERE email= ?";
         User user = null;
         Connection connection = null;
         try {
@@ -109,11 +108,12 @@ public class UserDaoImpl implements UserDao {
     @Override
     public void insert(User item) throws SQLException {
         //language=SQL
-        String sql = "INSERT INTO User(name, number, id, password, email) values (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO user" + "( name, number," +
+                "id, password, email) VALUES" + "(?, ? , ? , ? , ? );";
         Connection connection = null;
         try {
-            connection = dataSource.getConnection();
-            PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            connection = MySQLConnUtils.getMySQLConnection();
+            PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, item.getName());
             statement.setString(2, item.getNumber());
             statement.setLong(3, item.getId());
@@ -125,7 +125,7 @@ public class UserDaoImpl implements UserDao {
             if (generatedkeys.next()) {
                 item.setId(generatedkeys.getLong(1));
             }
-        } catch (SQLException e) {
+        } catch (SQLException | IllegalAccessException | InstantiationException | ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
             if (connection != null) {

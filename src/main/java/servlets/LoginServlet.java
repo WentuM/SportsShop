@@ -2,7 +2,6 @@ package servlets;
 
 import dao.UserDaoImpl;
 import model.User;
-import mysql.MySQLConnUtils;
 import services.UsersService;
 import services.UsersServiceImpl;
 
@@ -12,7 +11,6 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
-import java.sql.Connection;
 import java.sql.SQLException;
 
 @WebServlet(urlPatterns = {"/login"})
@@ -41,12 +39,6 @@ public class LoginServlet extends HttpServlet {
             errorString = "Заполните все поля авторизации";
         } else {
             try {
-                Connection conn = MySQLConnUtils.getMySQLConnection();
-            } catch (ClassNotFoundException | SQLException | IllegalAccessException | InstantiationException e) {
-                e.printStackTrace();
-            }
-            try {
-                // Найти user в DB.
                 user = usersService.findByEmail(email);
 
                 if (user == null) {
@@ -60,32 +52,23 @@ public class LoginServlet extends HttpServlet {
                 errorString = e.getMessage();
             }
         }
-        // В случае, если есть ошибка,
-        // forward (перенаправить) к /WEB-INF/views/login.jsp
         if (hasError) {
 
-            // Сохранить информацию в request attribute перед forward.
             request.setAttribute("errorString", errorString);
 
-            // Forward (перенаправить) к странице /WEB-INF/views/login.jsp
             RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/login");
             dispatcher.forward(request, response);
         }
-        // В случае, если нет ошибки.
-        // Сохранить информацию пользователя в Session.
-        // И перенаправить к странице userInfo.
+
         else {
             HttpSession session = request.getSession();
             session.setAttribute("userId", user.getId());
 
-            // Если пользователь выбирает функцию "Remember me".
             if (remember) {
                 Cookie cookieUser = new Cookie("userEmail", user.getEmail());
                 cookieUser.setMaxAge(60*60*24*365);
                 response.addCookie(cookieUser);
             }
-
-            // Redirect (Перенаправить) на страницу /userInfo.
             response.sendRedirect(request.getContextPath() + "/main");
         }
     }

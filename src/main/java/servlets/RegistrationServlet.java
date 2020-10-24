@@ -2,6 +2,8 @@ package servlets;
 
 import dao.UserDaoImpl;
 import model.User;
+import mysql.PaswordHash;
+import mysql.Patterns;
 import services.UsersService;
 import services.UsersServiceImpl;
 
@@ -12,7 +14,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -40,16 +41,15 @@ public class RegistrationServlet extends HttpServlet {
         User user = null;
         boolean hasError = false;
         String errorString = null;
-//        boolean regularEmail = email.matches("");
-//        boolean regularPassword = email.matches("");
 
         if (email == null || email.length() == 0 || name == null || name.length() == 0 ||
                 password == null || password.length() == 0 || number == null || number.length() == 0) {
             hasError = true;
             errorString = "Заполните все поля формы регистрации";
-        } else {
+        }
+        String check = Patterns.pattern(name, number, password, email);
+        if (check.equals("ok")) {
             try {
-                // Найти user в DB.
                 user = usersService.findByEmail(email);
 
                 if (user != null) {
@@ -62,22 +62,19 @@ public class RegistrationServlet extends HttpServlet {
                 hasError = true;
                 errorString = e.getMessage();
             }
+        } else {
+            errorString = check;
+            hasError = true;
         }
-//                 В случае, если есть ошибка,
-//                 forward (перенаправить) к /WEB-INF/views/login.jsp
-        if (hasError) {
 
-            // Сохранить информацию в request attribute перед forward.
+        if (hasError) {
             request.setAttribute("errorString", errorString);
 
             RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/login");
             dispatcher.forward(request, response);
         }
-        // В случае, если нет ошибки.
-        // Сохранить информацию пользователя в Session.
-        // И перенаправить к странице userInfo.
         else {
-            HttpSession session = request.getSession();
+            password = PaswordHash.hash(password);
             user = new User();
             user.setEmail(email);
             user.setName(name);
@@ -90,12 +87,9 @@ public class RegistrationServlet extends HttpServlet {
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
-            session.setAttribute("loginedUser", user.getId());
+            request.setAttribute("completeString", "Пользователь успешно зарегистрирован");
 
-//            session.setAttribute("userId", user.getId());
-
-            // Redirect (Перенаправить) на страницу /userInfo.
-            response.sendRedirect("/main");
+            response.sendRedirect("/login");
         }
     }
 }

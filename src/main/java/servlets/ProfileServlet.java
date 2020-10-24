@@ -16,7 +16,14 @@ public class ProfileServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         if (session != null) {
-            req.getRequestDispatcher("/profile.ftl").forward(req, resp);
+            Object flag = session.getAttribute("loginedUser");
+            if (flag == null) {
+                resp.sendRedirect("/login");
+            } else if (!flag.toString().equals("null")) {
+                req.getRequestDispatcher("/profile.ftl").forward(req, resp);
+            } else {
+                resp.sendRedirect("/login");
+            }
         } else {
             resp.sendRedirect("/login");
         }
