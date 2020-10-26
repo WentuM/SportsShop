@@ -40,14 +40,14 @@
             </div>
             <div class="col" style="border-left: 1px solid black">
                 <p><b>Информация об этом пользователе</b></p>
-                <p>Имя: <em>Иван Иванов</em><br>
-                    Номер телефона: <em>88005553535</em><br>
-                    Email: <em>ivan@example.com</em><br></p>
+                <p>Имя: <em>${name}</em><br>
+                    Номер телефона: <em>${number}</em><br>
+                    Email: <em>${email}</em><br></p>
             </div>
         </div>
     </div>
 </div>
-<div><form><input class="submit" type="button" onclick='location.href="edit.shtml"' value="Редактировать"></form></div>
+<div><input class="submit" type="button" onclick='location.href="/editProfile"' value="Редактировать"></div>
 <#import "/include/footer.ftl" as n>
 <@n.footer />
 <#include "/include/bootstrap-scripts.ftl">

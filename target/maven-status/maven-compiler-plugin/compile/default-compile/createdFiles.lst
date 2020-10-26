@@ -1,6 +1,5 @@
 dao\ProductDao.class
 services\UsersServiceImpl.class
-addDataBase\Program.class
 dao\ProductDaoImpl.class
 services\ReviewService.class
 services\UsersService.class
@@ -25,13 +24,17 @@ servlets\BasketServlet.class
 servlets\LoginServlet.class
 dao\PromoDao.class
 dao\ReviewDaoImpl.class
+filters\CharsetFilter.class
 dao\OrderDaoImpl.class
 model\Order.class
 servlets\RegistrationServlet.class
 dao\ReviewDao.class
 services\ProductService.class
 servlets\LogoutServlet.class
+mysql\Patterns.class
 dao\PromoDaoImpl.class
 mysql\MyUtils.class
 services\OrderService.class
+mysql\PaswordHash.class
+servlets\FeedBackServlet.class
 servlets\PromoServlet.class

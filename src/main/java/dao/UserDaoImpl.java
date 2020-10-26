@@ -4,7 +4,10 @@ import model.User;
 import mysql.MySQLConnUtils;
 
 import javax.sql.DataSource;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,10 +55,11 @@ public class UserDaoImpl implements UserDao {
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 user = new User();
-                user.setId(rs.getLong("id"));
+                user.setId(rs.getInt("id"));
                 user.setName(rs.getString("name"));
-                user.getEmail(rs.getString("email"));
-                user.getPassword(rs.getString("password"));
+                user.setEmail(rs.getString("email"));
+                user.setPassword(rs.getString("password"));
+                user.setNumber(rs.getString("number"));
             }
         } catch (SQLException | ClassNotFoundException e) {
             throw new IllegalStateException(e);
@@ -85,10 +89,11 @@ public class UserDaoImpl implements UserDao {
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 user = new User();
-                user.setId(rs.getLong("id"));
+                user.setId(rs.getInt("id"));
                 user.setName(rs.getString("name"));
-                user.getEmail(rs.getString("email"));
-                user.getPassword(rs.getString("password"));
+                user.setEmail(rs.getString("email"));
+                user.setPassword(rs.getString("password"));
+                user.setNumber(rs.getString("number"));
             }
         } catch (SQLException | ClassNotFoundException e) {
             throw new IllegalStateException(e);
@@ -108,42 +113,42 @@ public class UserDaoImpl implements UserDao {
     @Override
     public void insert(User item) throws SQLException {
         //language=SQL
-        String sql = "INSERT INTO user" + "( name, number," +
-                "id, password, email) VALUES" + "(?, ? , ? , ? , ? );";
-        Connection connection = null;
-        try {
-            connection = MySQLConnUtils.getMySQLConnection();
+        String sql = "INSERT INTO user (name, number, password, email) VALUES (?, ?, ?, ?);";
+        try (Connection connection = MySQLConnUtils.getMySQLConnection()) {
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1, item.getName());
-            statement.setString(2, item.getNumber());
-            statement.setLong(3, item.getId());
-            statement.setString(4, item.getPassword());
-            statement.setString(5, item.getEmail());
-            statement.execute();
-
-            ResultSet generatedkeys = statement.getGeneratedKeys();
-            if (generatedkeys.next()) {
-                item.setId(generatedkeys.getLong(1));
-            }
+            int i = 1;
+            statement.setString(i++, item.getName());
+            statement.setString(i++, item.getNumber());
+            statement.setString(i++, item.getPassword());
+            statement.setString(i, item.getEmail());
+            statement.executeUpdate();
         } catch (SQLException | IllegalAccessException | InstantiationException | ClassNotFoundException e) {
             e.printStackTrace();
-        } finally {
-            if (connection != null) {
-                try {
-                    connection.close();
-                } catch (SQLException ignore) {
-                }
-            }
         }
     }
 
     @Override
     public void update(User item) throws SQLException {
-
+        //language=SQL
+        String sql = "UPDATE user SET name = ?, number = ?, email = ?, password = ? WHERE id = ?;";
+//        String sql = "UPDATE INTO user(name, number, email, password) VALUES (?,?,?,?) WHERE id = ?;";
+        try (Connection connection = MySQLConnUtils.getMySQLConnection()) {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            int i = 1;
+            statement.setString(i++, item.getName());
+            statement.setString(i++, item.getNumber());
+            statement.setString(i++, item.getEmail());
+            statement.setString(i++, item.getPassword());
+            statement.setInt(i, item.getId());
+            statement.executeUpdate();
+        } catch (SQLException | IllegalAccessException | InstantiationException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void delete(User item) throws SQLException {
-
+        //language=SQL
+        String sql = "DROP USER [IF EXISTS] user";
     }
 }

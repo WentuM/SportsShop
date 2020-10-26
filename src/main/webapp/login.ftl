@@ -27,7 +27,10 @@
 <body>
 <#import "/include/header.ftl" as m>
 <@m.header />
-<form><div class="main-content">
+<#if errorString??>
+    <h2>${errorString}</h2>
+</#if>
+<form method="post"><div class="main-content">
         <p class="headline">Вход в профиль</p>
         <input name="email" type="email" placeholder="Email" required></p>
         <input name="password" type="password" placeholder="Password" required></p>

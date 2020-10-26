@@ -7,7 +7,6 @@ import mysql.Patterns;
 import services.UsersService;
 import services.UsersServiceImpl;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -29,7 +28,7 @@ public class RegistrationServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getServletContext().getRequestDispatcher("/registration.ftl").forward(request, response);
+        request.getRequestDispatcher("/registration.ftl").forward(request, response);
     }
 
     @Override
@@ -50,7 +49,9 @@ public class RegistrationServlet extends HttpServlet {
         String check = Patterns.pattern(name, number, password, email);
         if (check.equals("ok")) {
             try {
-                user = usersService.findByEmail(email);
+                if (email != null) {
+                    user = usersService.findByEmail(email.trim());
+                }
 
                 if (user != null) {
                     hasError = true;
@@ -69,25 +70,20 @@ public class RegistrationServlet extends HttpServlet {
 
         if (hasError) {
             request.setAttribute("errorString", errorString);
+            request.getServletContext().getRequestDispatcher("/registration.ftl").forward(request, response);
 
-            RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/login");
-            dispatcher.forward(request, response);
-        }
-        else {
-            password = PaswordHash.hash(password);
+        } else {
+            password = PaswordHash.hash(password.trim());
             user = new User();
-            user.setEmail(email);
             user.setName(name);
             user.setNumber(number);
-            user.setId((long) 1);
             user.setPassword(password);
             user.setEmail(email);
             try {
                 usersService.createUser(user);
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
+            } catch (SQLException e) {
+                throw new IllegalStateException(e);
             }
-            request.setAttribute("completeString", "Пользователь успешно зарегистрирован");
 
             response.sendRedirect("/login");
         }

@@ -9,19 +9,12 @@ public class User {
     public static final String NAME_COLUMN = "username";
     public static final String PASSWORD_COLUMN = "warehouse_id";
 
-    private Long id;
+    private int id;
     private String name;
     private String password;
     private String email;
     private String number;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
@@ -61,5 +54,13 @@ public class User {
 
     public void setNumber(String number) {
         this.number = number;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

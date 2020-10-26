@@ -24,6 +24,9 @@
 <body>
 <#import "/include/header.ftl" as m>
 <@m.header />
+<#if errorString??>
+    <h2>${errorString}</h2>
+</#if>
 <form method="post"><div class="main-content">
         <p class="headline">Регистрация</p>
         <div class="inputs"><input name="name" type="text" placeholder="Name" required><br></div>

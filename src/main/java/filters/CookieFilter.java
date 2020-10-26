@@ -65,7 +65,7 @@ public class CookieFilter implements Filter {
                 throwables.printStackTrace();
             }
             if (user != null) {
-                session.setAttribute("loginedUser", user.getId());
+                session.setAttribute("loginedUser", user.getEmail());
             }
         }
 

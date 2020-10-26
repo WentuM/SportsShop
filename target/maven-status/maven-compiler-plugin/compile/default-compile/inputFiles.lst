@@ -1,5 +1,6 @@
 C:\Users\kesan\IdeaProjects\SportsShopp\src\main\java\model\Manufacturer.java
 C:\Users\kesan\IdeaProjects\SportsShopp\src\main\java\servlets\LogoutServlet.java
+C:\Users\kesan\IdeaProjects\SportsShopp\src\main\java\mysql\Patterns.java
 C:\Users\kesan\IdeaProjects\SportsShopp\src\main\java\servlets\RegistrationServlet.java
 C:\Users\kesan\IdeaProjects\SportsShopp\src\main\java\dao\UserDao.java
 C:\Users\kesan\IdeaProjects\SportsShopp\src\main\java\services\OrderServiceImpl.java
@@ -21,8 +22,11 @@ C:\Users\kesan\IdeaProjects\SportsShopp\src\main\java\model\Promo.java
 C:\Users\kesan\IdeaProjects\SportsShopp\src\main\java\services\ProductServiceImpl.java
 C:\Users\kesan\IdeaProjects\SportsShopp\src\main\java\dao\PromoDaoImpl.java
 C:\Users\kesan\IdeaProjects\SportsShopp\src\main\java\dao\ProductDao.java
+C:\Users\kesan\IdeaProjects\SportsShopp\src\main\java\filters\CharsetFilter.java
+C:\Users\kesan\IdeaProjects\SportsShopp\src\main\java\mysql\PaswordHash.java
 C:\Users\kesan\IdeaProjects\SportsShopp\src\main\java\services\ReviewServiceImpl.java
 C:\Users\kesan\IdeaProjects\SportsShopp\src\main\java\dao\PromoDao.java
+C:\Users\kesan\IdeaProjects\SportsShopp\src\main\java\servlets\FeedBackServlet.java
 C:\Users\kesan\IdeaProjects\SportsShopp\src\main\java\mysql\MySQLConnUtils.java
 C:\Users\kesan\IdeaProjects\SportsShopp\src\main\java\servlets\EditServlet.java
 C:\Users\kesan\IdeaProjects\SportsShopp\src\main\java\dao\OrderDao.java
@@ -34,6 +38,5 @@ C:\Users\kesan\IdeaProjects\SportsShopp\src\main\java\servlets\BasketServlet.jav
 C:\Users\kesan\IdeaProjects\SportsShopp\src\main\java\dao\ReviewDao.java
 C:\Users\kesan\IdeaProjects\SportsShopp\src\main\java\model\Product.java
 C:\Users\kesan\IdeaProjects\SportsShopp\src\main\java\model\Review.java
-C:\Users\kesan\IdeaProjects\SportsShopp\src\main\java\by\lesson11\filters\CharsetFilter.java
 C:\Users\kesan\IdeaProjects\SportsShopp\src\main\java\servlets\CatalogSerlvet.java
 C:\Users\kesan\IdeaProjects\SportsShopp\src\main\java\servlets\LoginServlet.java
