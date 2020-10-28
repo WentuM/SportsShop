@@ -64,7 +64,7 @@
     </table>
     <p style="margin-bottom: 5px"><em>Суммарная цена: 2350 рублей</em></p>
 </div>
-<input class="submit" type="submit" value="Оформить" >
+<input class="submit" type="submit" value="Оформить" onclick='location.href="/order"'>
 <#import "/include/footer.ftl" as n>
 <@n.footer />
 <#include "/include/bootstrap-scripts.ftl">

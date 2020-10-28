@@ -29,7 +29,7 @@
             <div class="col-sm-4" style="text-align: left; border-right: 1px solid black">
                 <p>Заказчик: <input type="text" placeholder="Вася" disabled><br>
                     Номер телефона: <input type="text" placeholder="88005553535" disabled><br></p>
-                <small><a href="edit.shtml" style="color: #455e84 !important;">Редактировать профиль</a></small>
+                <small><a href="/editProfile" style="color: #455e84 !important;">Редактировать профиль</a></small>
             </div>
             <div class="col-sm-8"  style="text-align: left;" >
                 Сумма заказа: 2350 рублей (+ учёт скидок)<br>

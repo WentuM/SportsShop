@@ -11,6 +11,7 @@
         .main-content {
             width: 40%;
         }
+
         .submit {
             margin-left: 42%;
         }
@@ -20,13 +21,17 @@
 <body>
 <#import "/include/header.ftl" as m>
 <@m.header />
+<#if errorString??>
+    <h4>${errorString}</h4>
+</#if>
 <form method="post"><div class="main-content">
         <p class="headline">Редактирование профиля</p>
         <div class="inputs"><input name="name" type="text" placeholder="Name" value="${name}"><br></div>
         <div class="inputs"><input name="email" type="email" placeholder="Email" value="${email}"><br></div>
-        <div class="inputs"><input name="number" type="text" placeholder="Number" value="${number}" pattern="^(8|\+7)([0-9]){10}"><br></div>
-<#--        <div class="inputs"><input id="text-count" type="password" placeholder="Old Password"><br></div>-->
-<#--        <div class="inputs"><input type="password" placeholder="New Password"><br></div>-->
+        <div class="inputs"><input name="number" type="text" placeholder="Number" value="${number}"
+                                   pattern="^(8|\+7)([0-9]){10}"><br></div>
+        <#--        <div class="inputs"><input id="text-count" type="password" placeholder="Old Password"><br></div>-->
+        <#--        <div class="inputs"><input type="password" placeholder="New Password"><br></div>-->
         <div class="inputs"><input type="file"></div>
     </div>
     <input class="submit" type="submit" value="Принять изменения">

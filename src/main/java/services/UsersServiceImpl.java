@@ -35,7 +35,7 @@ public class UsersServiceImpl implements UsersService {
 
     @Override
     public void update(User item) throws SQLException {
-
+        userDao.update(item);
     }
 
     @Override

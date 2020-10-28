@@ -89,9 +89,13 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-8">
-                <img class="product_photo" src="resources/protein2.png">
-                <form><div class="review"><h6>Оставить отзыв:</h6><textarea rows="5" placeholder="Введите текст..."></textarea></div>
-                    <input class="send" type="submit" value="Отправить" style="margin-left: 40.5%; margin-bottom: 30px"></form>
+                <img class="product_photo" src="${product.imageProduct}">
+                <#if auth??>
+                    
+                    <#else>
+                        <form><div class="review"><h6>Оставить отзыв:</h6><textarea rows="5" placeholder="Введите текст..."></textarea></div>
+                            <input class="send" type="submit" value="Отправить" style="margin-left: 40.5%; margin-bottom: 30px"></form>
+                </#if>
                 <div class="reviews"><h6>Все отзывы:</h6>
                     <div class="message">
                         Имя пользователя: Вася<br>
@@ -102,11 +106,11 @@
             </div>
             <div class="col-sm-4">
                 <div style="padding: 10px; border-left: 1px solid black; border-bottom: 1px solid black">
-                    <form><h6><b>IDEAL BAR Tropic strawberry</b></h6>
+                    <form method="post"><h6><b>${product.name}</b></h6>
                         <table>
                             <tr>
                                 <td>Кол-во</td>
-                                <td><input type="number" min="1" max=""
+                                <td><input name="quantity" type="number" min="1" max="${product.count}"
                                            style="width: 40px !important; margin-left: 10px !important;"></td>
                             </tr>
                             <tr>
@@ -131,7 +135,7 @@
                             <div class="card-body description">
                                 Категория: Протеиновый батончик<br>
                                 Производитель: GEON<br>
-                                Цена: 220 р/шт<br>
+                                Цена: ${product.price} р/шт<br>
                             </div>
                         </div>
                     </div>
@@ -145,7 +149,7 @@
                         </div>
                         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
                             <div class="card-body description">
-                                Можно употреблять в любое время. Хорошо подходит для правильного перекуса и утоления голода . Хорошо восполняет потраченную энергию и восстанавливает силы после физической нагрузки и занятий спортом.
+                                ${product.description}
                             </div>
                         </div>
                     </div>

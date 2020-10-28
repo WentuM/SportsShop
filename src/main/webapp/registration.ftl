@@ -25,7 +25,7 @@
 <#import "/include/header.ftl" as m>
 <@m.header />
 <#if errorString??>
-    <h2>${errorString}</h2>
+    <h4>${errorString}</h4>
 </#if>
 <form method="post"><div class="main-content">
         <p class="headline">Регистрация</p>

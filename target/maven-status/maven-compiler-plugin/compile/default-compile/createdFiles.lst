@@ -14,7 +14,6 @@ dao\OrderDao.class
 model\Review.class
 services\ReviewServiceImpl.class
 model\Promo.class
-servlets\CatalogSerlvet.class
 model\Product.class
 model\Manufacturer.class
 model\User.class
@@ -23,16 +22,19 @@ dao\UserDaoImpl.class
 servlets\BasketServlet.class
 servlets\LoginServlet.class
 dao\PromoDao.class
+servlets\ProductServlet.class
 dao\ReviewDaoImpl.class
 filters\CharsetFilter.class
 dao\OrderDaoImpl.class
 model\Order.class
 servlets\RegistrationServlet.class
+servlets\OrderingSerlvet.class
 dao\ReviewDao.class
 services\ProductService.class
 servlets\LogoutServlet.class
 mysql\Patterns.class
 dao\PromoDaoImpl.class
+servlets\CatalogServlet.class
 mysql\MyUtils.class
 services\OrderService.class
 mysql\PaswordHash.class

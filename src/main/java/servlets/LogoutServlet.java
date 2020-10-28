@@ -15,7 +15,7 @@ public class LogoutServlet extends HttpServlet {
         resp.addCookie(cookieUser);
         session.removeAttribute("loginedUser");
 
-        resp.sendRedirect(super.getServletContext().getContextPath());
+        resp.sendRedirect("/main");
     }
 
     @Override

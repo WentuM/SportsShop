@@ -1,4 +1,100 @@
 package dao;
 
+import model.Product;
+import mysql.MySQLConnUtils;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 public class ProductDaoImpl implements ProductDao {
+    @Override
+    public List<Product> findAll() throws SQLException {
+        //language=SQL
+        String sql = "SELECT * FROM product";
+        List<Product> result = new ArrayList<>();
+        Connection connection = null;
+        try {
+            connection = MySQLConnUtils.getMySQLConnection();
+            PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                Product product = new Product();
+                product.setId(rs.getInt("id"));
+                product.setName(rs.getString("name"));
+                product.setPrice(rs.getInt("price"));
+                product.setDescription(rs.getString("description"));
+                product.setImageProduct(rs.getString("imageProduct"));
+                product.setCount(rs.getInt("count"));
+                product.setCategory(rs.getString("category"));
+                result.add(product);
+            }
+        } catch (ClassNotFoundException e) {
+            throw new IllegalStateException(e);
+        } catch (IllegalAccessException | InstantiationException e) {
+            e.printStackTrace();
+        } finally {
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException ignore) {
+                }
+            }
+        }
+        return result;
+    }
+
+    @Override
+    public Product findById(int id) throws SQLException {
+        //language=SQL
+        String sql = "SELECT * FROM product WHERE id = ?";
+        Product product = null;
+        Connection connection = null;
+        try {
+            connection = MySQLConnUtils.getMySQLConnection();
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setLong(1, id);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                product = new Product();
+                product.setId(rs.getInt("id"));
+                product.setName(rs.getString("name"));
+                product.setPrice(rs.getInt("price"));
+                product.setDescription(rs.getString("description"));
+                product.setImageProduct(rs.getString("imageProduct"));
+                product.setCount(rs.getInt("count"));
+                product.setCategory(rs.getString("category"));
+            }
+        } catch (SQLException | ClassNotFoundException e) {
+            throw new IllegalStateException(e);
+        } catch (IllegalAccessException | InstantiationException e) {
+            e.printStackTrace();
+        } finally {
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException ignore) {
+                }
+            }
+        }
+        return product;
+    }
+
+    @Override
+    public void insert(Product item) throws SQLException {
+
+    }
+
+    @Override
+    public void update(Product item) throws SQLException {
+
+    }
+
+    @Override
+    public void delete(Product item) throws SQLException {
+
+    }
 }

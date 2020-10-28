@@ -38,14 +38,6 @@ public class CookieFilter implements Filter {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpSession session = req.getSession();
 
-//        User userInSession = MyUtils.getLoginedUser(session);
-        //
-//        if (userInSession != null) {
-//            session.setAttribute("COOKIE_CHECKED", "CHECKED");
-//            chain.doFilter(request, response);
-//            return;
-//        }
-
         String flag = "";
         Cookie[] cookies = req.getCookies();
         if (cookies != null) {
@@ -68,21 +60,6 @@ public class CookieFilter implements Filter {
                 session.setAttribute("loginedUser", user.getEmail());
             }
         }
-
-
-        // Флаг(flag) для проверки Cookie.
-//        String checked = (String) session.getAttribute("COOKIE_CHECKED");
-//        if (checked == null && conn != null) {
-//            String userName = MyUtils.getUserNameInCookie(req);
-//            try {
-//                User user = DBUtils.findUser(conn, userName);
-//                MyUtils.storeLoginedUser(session, user);
-//            } catch (SQLException e) {
-//                e.printStackTrace();
-//            }
-//            // Отметить проверенные Cookie.
-//            session.setAttribute("COOKIE_CHECKED", "CHECKED");
-//        }
 
         chain.doFilter(request, response);
     }

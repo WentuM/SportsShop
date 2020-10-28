@@ -11,6 +11,7 @@
         .main-content {
             margin-bottom: 30px;
         }
+
         table {
             text-align: left;
         }
@@ -29,27 +30,35 @@
             width: 70%;
             margin-bottom: 20px;
         }
+
         .card-img-top {
             height: 120px;
 
         }
+
         .card-title {
             margin-bottom: 0 !important;
         }
+
         .card-body {
             padding: 8px !important;
         }
+
         .card {
             height: 186px;
             border: 1px solid black !important;
             background: rgba(255, 255, 255, 0.42) !important;
         }
+
         card:hover {
-            box-shadow: 0 0 10px rgb(0,0,0); !important;
+            box-shadow: 0 0 10px rgb(0, 0, 0);
+        !important;
         }
+
         .search-but {
             margin-bottom: 5px;
         }
+
         .search-but:hover {
             background: #455e84;
         }
@@ -145,33 +154,33 @@
                     </table>
                     <input class="sub" type="submit" value="Принять"></form>
             </div>
-            <div class="col-sm-8" style="border-left: 1px solid black"><form><input class="search"
-                                                                                    placeholder="Поиск по названию..."
-                                                                                    type="search"><input type="submit"  class="search-but" value="Искать" style="margin-left: 5px"></form>
+            <div class="col-sm-8" style="border-left: 1px solid black">
+                <form><input class="search"
+                             placeholder="Поиск по названию..."
+                             type="search"><input type="submit" class="search-but" value="Искать"
+                                                  style="margin-left: 5px"></form>
                 <div class="container">
                     <div class="row">
-                        <div class="col"> <!--Общее для всех продуктов-->
-                            <div class="card">
-                                <input type="hidden" name="product" value="id"/> <!--Скрытое поле, результат чего отправляется на сервак при нажатии кнопки; value - PK продукта-->
-                                <img class="card-img-top" src="resources/protein2.png" alt="Card image cap">
-                                <div class="card-body">
-                                    <h5 class="card-title">Название продукта</h5>
-                                    <p class="card-text">цена</p>
-                                </div>
-                            </div>
-                            <input class="submit" type="submit" value="В корзину">
-                        </div>
-                        <div class="col">
-                            <form><div class="card">
-                                    <input type="hidden" name="product" value="id"/> <!--Скрытое поле, результат чего отправляется на сервак при нажатии кнопки; value - PK продукта-->
-                                    <img class="card-img-top" src="resources/protein2.png" alt="Card image cap">
+                        <#list products as product>
+                            <div class="col"> <!--Общее для всех продуктов-->
+                                <a style="display: block; color: black !important;" href="/product?id=#{product.id}">
+                                <div class="card">
+                                    <input type="hidden" name="product" value="id"/>
+                                    <!--Скрытое поле, результат чего отправляется на сервак при нажатии кнопки; value - PK продукта-->
+                                    <img class="card-img-top" src="${product.imageProduct}" alt="Card image cap">
                                     <div class="card-body">
-                                        <h5 class="card-title">Название продукта</h5>
-                                        <p class="card-text">цена</p>
+                                        <h5 class="card-title">${product.name}</h5>
+                                        <p class="card-text">${product.price} рублей</p>
                                     </div>
                                 </div>
-                                <input class="submit" type="submit" value="Нет в наличии" disabled></form>
-                        </div>
+                                <#if (product.count > 0)>
+                                    <input class="submit" type="submit" value="В корзину">
+                                <#else>
+                                    <input class="submit" type="submit" value="Нет в наличии" disabled>
+                                </#if>
+                                    </a>
+                            </div>
+                        </#list>
                     </div>
                 </div>
             </div>

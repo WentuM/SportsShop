@@ -14,6 +14,7 @@ public class User {
     private String password;
     private String email;
     private String number;
+    private String image;
 
 
     public String getName() {
@@ -62,5 +63,13 @@ public class User {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

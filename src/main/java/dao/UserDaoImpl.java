@@ -45,7 +45,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public User findById(Long id) throws SQLException {
         //language=SQL
-        String sql = "SELECT * FROM user_table WHERE user_id = ?";
+        String sql = "SELECT * FROM user WHERE id = ?";
         User user = null;
         Connection connection = null;
         try {
@@ -129,9 +129,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public void update(User item) throws SQLException {
-        //language=SQL
-        String sql = "UPDATE user SET name = ?, number = ?, email = ?, password = ? WHERE id = ?;";
-//        String sql = "UPDATE INTO user(name, number, email, password) VALUES (?,?,?,?) WHERE id = ?;";
+        String sql = "UPDATE user SET name = ?, number = ?, email = ?, password = ? WHERE id = ?";
         try (Connection connection = MySQLConnUtils.getMySQLConnection()) {
             PreparedStatement statement = connection.prepareStatement(sql);
             int i = 1;

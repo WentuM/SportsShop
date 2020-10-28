@@ -43,6 +43,7 @@
                 <p>Имя: <em>${name}</em><br>
                     Номер телефона: <em>${number}</em><br>
                     Email: <em>${email}</em><br></p>
+                <input type="submit" value="Выйти из аккаунта" onclick='location.href="/logout"'>
             </div>
         </div>
     </div>

@@ -12,6 +12,7 @@ C:\Users\kesan\IdeaProjects\SportsShopp\src\main\java\servlets\MainServlet.java
 C:\Users\kesan\IdeaProjects\SportsShopp\src\main\java\services\UsersServiceImpl.java
 C:\Users\kesan\IdeaProjects\SportsShopp\src\main\java\dao\OrderDaoImpl.java
 C:\Users\kesan\IdeaProjects\SportsShopp\src\main\java\filters\CookieFilter.java
+C:\Users\kesan\IdeaProjects\SportsShopp\src\main\java\servlets\ImageServlet.java
 C:\Users\kesan\IdeaProjects\SportsShopp\src\main\java\dao\ProductDaoImpl.java
 C:\Users\kesan\IdeaProjects\SportsShopp\src\main\java\services\UsersService.java
 C:\Users\kesan\IdeaProjects\SportsShopp\src\main\java\dao\UserDaoImpl.java
@@ -21,6 +22,7 @@ C:\Users\kesan\IdeaProjects\SportsShopp\src\main\java\mysql\MyUtils.java
 C:\Users\kesan\IdeaProjects\SportsShopp\src\main\java\model\Promo.java
 C:\Users\kesan\IdeaProjects\SportsShopp\src\main\java\services\ProductServiceImpl.java
 C:\Users\kesan\IdeaProjects\SportsShopp\src\main\java\dao\PromoDaoImpl.java
+C:\Users\kesan\IdeaProjects\SportsShopp\src\main\java\servlets\OrderingSerlvet.java
 C:\Users\kesan\IdeaProjects\SportsShopp\src\main\java\dao\ProductDao.java
 C:\Users\kesan\IdeaProjects\SportsShopp\src\main\java\filters\CharsetFilter.java
 C:\Users\kesan\IdeaProjects\SportsShopp\src\main\java\mysql\PaswordHash.java
@@ -35,8 +37,10 @@ C:\Users\kesan\IdeaProjects\SportsShopp\src\main\java\dao\ReviewDaoImpl.java
 C:\Users\kesan\IdeaProjects\SportsShopp\src\main\java\model\Order.java
 C:\Users\kesan\IdeaProjects\SportsShopp\src\main\java\services\ReviewService.java
 C:\Users\kesan\IdeaProjects\SportsShopp\src\main\java\servlets\BasketServlet.java
+C:\Users\kesan\IdeaProjects\SportsShopp\src\main\java\servlets\DirUploadServlet.java
 C:\Users\kesan\IdeaProjects\SportsShopp\src\main\java\dao\ReviewDao.java
+C:\Users\kesan\IdeaProjects\SportsShopp\src\main\java\servlets\ProductServlet.java
 C:\Users\kesan\IdeaProjects\SportsShopp\src\main\java\model\Product.java
 C:\Users\kesan\IdeaProjects\SportsShopp\src\main\java\model\Review.java
-C:\Users\kesan\IdeaProjects\SportsShopp\src\main\java\servlets\CatalogSerlvet.java
+C:\Users\kesan\IdeaProjects\SportsShopp\src\main\java\servlets\CatalogServlet.java
 C:\Users\kesan\IdeaProjects\SportsShopp\src\main\java\servlets\LoginServlet.java

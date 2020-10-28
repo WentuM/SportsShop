@@ -60,14 +60,9 @@ public class EditServlet extends HttpServlet {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        System.out.println(idUser);
-        System.out.println(nameUser);
         String email = request.getParameter("email");
         String name = request.getParameter("name");
         String number = request.getParameter("number");
-        System.out.println(name);
-        System.out.println(email);
-        System.out.println(emailUser);
         User user = null;
         boolean hasError = false;
         String errorString = null;
@@ -100,8 +95,7 @@ public class EditServlet extends HttpServlet {
 
         if (hasError) {
             request.setAttribute("errorString", errorString);
-            request.getServletContext().getRequestDispatcher("/edit.ftl").forward(request, response);
-
+            request.getRequestDispatcher("/edit.ftl").forward(request, response);
         } else {
             user = new User();
             if (name.equals(nameUser)) {
