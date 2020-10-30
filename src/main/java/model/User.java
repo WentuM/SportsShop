@@ -4,10 +4,6 @@ import lombok.Data;
 
 @Data
 public class User {
-    public static final String TABLE_NAME = "user";
-    public static final String ID_COLUMN = "id";
-    public static final String NAME_COLUMN = "username";
-    public static final String PASSWORD_COLUMN = "warehouse_id";
 
     private int id;
     private String name;
@@ -15,6 +11,7 @@ public class User {
     private String email;
     private String number;
     private String image;
+    private Order order;
 
 
     public String getName() {
@@ -71,5 +68,13 @@ public class User {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
     }
 }

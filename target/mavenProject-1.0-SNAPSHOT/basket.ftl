@@ -39,27 +39,15 @@
         </tr>
         </thead>
         <tbody>
+        <#list order.productList as product>
         <tr>
             <th scope="row">1</th>
-            <td>Витаминки</td>
-            <td>2000</td>
-            <td>1</td>
+            <td>product.name</td>
+            <td>product.salary</td>
+            <td>product.count</td>
             <td><input type="submit" value="Удалить"></td>
         </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>Батончик</td>
-            <td>150</td>
-            <td>4</td>
-            <td><input type="submit" value="Удалить"></td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td>Изотроп</td>
-            <td>200</td>
-            <td>1</td>
-            <td><input type="submit" value="Удалить"></td>
-        </tr>
+        </#list>
         </tbody>
     </table>
     <p style="margin-bottom: 5px"><em>Суммарная цена: 2350 рублей</em></p>

@@ -93,7 +93,11 @@
                 <#if auth??>
 
                     <#else>
-                        <form action="/addReview?id=#{product.id}" method="post"><div class="review"><h6>Оставить отзыв:</h6><textarea name="reviewText" rows="5" placeholder="Введите текст..."></textarea></div>
+                        <form action="/addReview?id=#{product.id} " method="post">
+                            <div class="review">
+                                <h6>Оставить отзыв:
+                                </h6><textarea name="reviewText" rows="5" placeholder="Введите текст..."></textarea>
+                            </div>
                             <input class="send" type="submit" value="Отправить" style="margin-left: 40.5%; margin-bottom: 30px"></form>
                 </#if>
                 <div class="reviews"><h6>Все отзывы:</h6>
@@ -117,8 +121,10 @@
                             </tr>
                             <tr>
                                 <td></td>
-                                <td><input type="submit" value="В корзину" style="margin-left: 10px" class="send">
+                                <form method="post" action="/addProduct?id=${product.id}">
+                                <td><input name="count" type="submit" value="В корзину" style="margin-left: 10px" class="send">
                                 </td>
+                                </form>
                             </tr>
                         </table>
                     </form>
