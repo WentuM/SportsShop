@@ -116,4 +116,13 @@
         <servlet-name>upload-servlet</servlet-name>
         <url-pattern>/upload/dir</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>HomeServlet</servlet-name>
+        <servlet-class>servlets.MainServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>HomeServlet</servlet-name>
+        <url-pattern></url-pattern>
+    </servlet-mapping>
 </web-app>

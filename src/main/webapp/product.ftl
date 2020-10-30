@@ -93,15 +93,17 @@
                 <#if auth??>
 
                     <#else>
-                        <form><div class="review"><h6>Оставить отзыв:</h6><textarea rows="5" placeholder="Введите текст..."></textarea></div>
+                        <form action="/addReview?id=#{product.id}" method="post"><div class="review"><h6>Оставить отзыв:</h6><textarea name="reviewText" rows="5" placeholder="Введите текст..."></textarea></div>
                             <input class="send" type="submit" value="Отправить" style="margin-left: 40.5%; margin-bottom: 30px"></form>
                 </#if>
                 <div class="reviews"><h6>Все отзывы:</h6>
+                    <#list reviews as review>
                     <div class="message">
-                        Имя пользователя: Вася<br>
-                        Дата: 30.05.2020 <br>
-                        Отзыв: Рекомендую <br>
+                        Имя пользователя: ${review.user.name}<br>
+                        Дата: ${review.data}<br>
+                        Отзыв: ${review.text}<br>
                     </div>
+                    </#list>
                 </div>
             </div>
             <div class="col-sm-4">
@@ -110,7 +112,7 @@
                         <table>
                             <tr>
                                 <td>Кол-во</td>
-                                <td><input name="quantity" type="number" min="1" max="${product.count}"
+                                <td><input name="quantity" type="number" min="1" max="${product.count}" required
                                            style="width: 40px !important; margin-left: 10px !important;"></td>
                             </tr>
                             <tr>
@@ -134,7 +136,7 @@
                         <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
                             <div class="card-body description">
                                 Категория: Протеиновый батончик<br>
-                                Производитель: GEON<br>
+                                Производитель: <input type="button" onclick='location.href="/manufacturer?manufacturer=${product.manufacturer.id}"' value="${product.manufacturer.name}"><br>
                                 Цена: ${product.price} р/шт<br>
                             </div>
                         </div>

@@ -1,6 +1,8 @@
 package dao;
 
+import model.Manufacturer;
 import model.Product;
+import model.Review;
 import mysql.MySQLConnUtils;
 
 import java.sql.Connection;
@@ -11,6 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProductDaoImpl implements ProductDao {
+    private ReviewDaoImpl reviewDao = new ReviewDaoImpl();
+    private ManufacturerDaoImpl manufacturerDao = new ManufacturerDaoImpl();
     @Override
     public List<Product> findAll() throws SQLException {
         //language=SQL
@@ -59,6 +63,9 @@ public class ProductDaoImpl implements ProductDao {
             statement.setLong(1, id);
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
+                int manufactId = rs.getInt("manufacturer_id");
+                Manufacturer manufacturer = manufacturerDao.getById(manufactId);
+                List<Review> reviewList = reviewDao.getReviewById(id);
                 product = new Product();
                 product.setId(rs.getInt("id"));
                 product.setName(rs.getString("name"));
@@ -67,6 +74,8 @@ public class ProductDaoImpl implements ProductDao {
                 product.setImageProduct(rs.getString("imageProduct"));
                 product.setCount(rs.getInt("count"));
                 product.setCategory(rs.getString("category"));
+                product.setManufacturer(manufacturer);
+                product.setList(reviewList);
             }
         } catch (SQLException | ClassNotFoundException e) {
             throw new IllegalStateException(e);

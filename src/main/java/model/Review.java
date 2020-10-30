@@ -3,7 +3,7 @@ package model;
 public class Review {
     private int id;
     private User user;
-    private Product product;
+    private int product_id;
     private String text;
     private String data;
 
@@ -31,11 +31,19 @@ public class Review {
         this.text = text;
     }
 
-    public Product getProduct() {
-        return product;
+    public String getData() {
+        return data;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setData(String data) {
+        this.data = data;
+    }
+
+    public int getProduct_id() {
+        return product_id;
+    }
+
+    public void setProduct_id(int product_id) {
+        this.product_id = product_id;
     }
 }

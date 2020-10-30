@@ -107,15 +107,6 @@
                                 </div>
                             </td>
                         </tr>
-                        <th>По производителю:</th>
-                        <tr>
-                            <td>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="" value="">
-                                    <label class="form-check-label" for=""></label>
-                                </div>
-                            </td>
-                        </tr>
                         <th>По цене:</th>
                         <tr>
                             <td>

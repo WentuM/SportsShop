@@ -43,7 +43,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public User findById(Long id) throws SQLException {
+    public User findById(int id) throws SQLException {
         //language=SQL
         String sql = "SELECT * FROM user WHERE id = ?";
         User user = null;
@@ -51,7 +51,7 @@ public class UserDaoImpl implements UserDao {
         try {
             connection = MySQLConnUtils.getMySQLConnection();
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setLong(1, id);
+            statement.setInt(1, id);
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 user = new User();

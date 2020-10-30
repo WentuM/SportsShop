@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface UsersService {
     public List<User> findAll() throws SQLException;
-    public User findById(Long id) throws SQLException;
+    public User findById(int id) throws SQLException;
     public User findByEmail(String email) throws SQLException;
     public void createUser(User item) throws SQLException;
     public void update(User item) throws SQLException;

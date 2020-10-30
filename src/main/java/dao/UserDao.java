@@ -14,7 +14,7 @@ public interface UserDao {
     public static final String SQL_DELETE = "delete from " + User.TABLE_NAME + " where " + User.ID_COLUMN + " = ?";
 
     public List<User> findAll() throws SQLException;
-    public User findById(Long id) throws SQLException;
+    public User findById(int id) throws SQLException;
     public User findByEmail(String email) throws SQLException;
     public void insert(User item) throws SQLException;
     public void update(User item) throws SQLException;

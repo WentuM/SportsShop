@@ -1,5 +1,7 @@
 package model;
 
+import java.util.List;
+
 public class Product {
     private int id;
     private String name;
@@ -8,6 +10,8 @@ public class Product {
     private String imageProduct;
     private int count;
     private String category;
+    private List<Review> list;
+    private Manufacturer manufacturer;
 
 
     public int getPrice() {
@@ -76,5 +80,21 @@ public class Product {
 
     public void setCount(int count) {
         this.count = count;
+    }
+
+    public List<Review> getList() {
+        return list;
+    }
+
+    public void setList(List<Review> list) {
+        this.list = list;
+    }
+
+    public Manufacturer getManufacturer() {
+        return manufacturer;
+    }
+
+    public void setManufacturer(Manufacturer manufacturer) {
+        this.manufacturer = manufacturer;
     }
 }

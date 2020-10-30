@@ -19,7 +19,7 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
-    public User findById(Long id) throws SQLException {
+    public User findById(int id) throws SQLException {
         return userDao.findById(id);
     }
 
