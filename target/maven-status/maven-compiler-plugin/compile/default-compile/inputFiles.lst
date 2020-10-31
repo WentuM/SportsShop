@@ -4,6 +4,7 @@ C:\Users\kesan\IdeaProjects\SportsShopp\src\main\java\mysql\Patterns.java
 C:\Users\kesan\IdeaProjects\SportsShopp\src\main\java\servlets\RegistrationServlet.java
 C:\Users\kesan\IdeaProjects\SportsShopp\src\main\java\dao\UserDao.java
 C:\Users\kesan\IdeaProjects\SportsShopp\src\main\java\services\OrderServiceImpl.java
+C:\Users\kesan\IdeaProjects\SportsShopp\src\main\java\servlets\AddProductServlet.java
 C:\Users\kesan\IdeaProjects\SportsShopp\src\main\java\mysql\DBUtils.java
 C:\Users\kesan\IdeaProjects\SportsShopp\src\main\java\services\OrderService.java
 C:\Users\kesan\IdeaProjects\SportsShopp\src\main\java\model\User.java
@@ -38,7 +39,6 @@ C:\Users\kesan\IdeaProjects\SportsShopp\src\main\java\model\Order.java
 C:\Users\kesan\IdeaProjects\SportsShopp\src\main\java\services\ReviewService.java
 C:\Users\kesan\IdeaProjects\SportsShopp\src\main\java\servlets\BasketServlet.java
 C:\Users\kesan\IdeaProjects\SportsShopp\src\main\java\servlets\ManufacturerServlet.java
-C:\Users\kesan\IdeaProjects\SportsShopp\src\main\java\servlets\DirUploadServlet.java
 C:\Users\kesan\IdeaProjects\SportsShopp\src\main\java\dao\ReviewDao.java
 C:\Users\kesan\IdeaProjects\SportsShopp\src\main\java\servlets\ProductServlet.java
 C:\Users\kesan\IdeaProjects\SportsShopp\src\main\java\model\Product.java

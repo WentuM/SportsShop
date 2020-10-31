@@ -94,6 +94,7 @@ public class UserDaoImpl implements UserDao {
                 user.setEmail(rs.getString("email"));
                 user.setPassword(rs.getString("password"));
                 user.setNumber(rs.getString("number"));
+                user.setImage(rs.getString("image"));
             }
         } catch (SQLException | ClassNotFoundException e) {
             throw new IllegalStateException(e);
@@ -113,14 +114,15 @@ public class UserDaoImpl implements UserDao {
     @Override
     public void insert(User item) throws SQLException {
         //language=SQL
-        String sql = "INSERT INTO user (name, number, password, email) VALUES (?, ?, ?, ?);";
+        String sql = "INSERT INTO user (name, number, password, email, image) VALUES (?, ?, ?, ?, ?);";
         try (Connection connection = MySQLConnUtils.getMySQLConnection()) {
             PreparedStatement statement = connection.prepareStatement(sql);
             int i = 1;
             statement.setString(i++, item.getName());
             statement.setString(i++, item.getNumber());
             statement.setString(i++, item.getPassword());
-            statement.setString(i, item.getEmail());
+            statement.setString(i++, item.getEmail());
+            statement.setString(i, item.getImage());
             statement.executeUpdate();
         } catch (SQLException | IllegalAccessException | InstantiationException | ClassNotFoundException e) {
             e.printStackTrace();
@@ -129,7 +131,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public void update(User item) throws SQLException {
-        String sql = "UPDATE user SET name = ?, number = ?, email = ?, password = ? WHERE id = ?";
+        String sql = "UPDATE user SET name = ?, number = ?, email = ?, password = ?, image = ? WHERE id = ?";
         try (Connection connection = MySQLConnUtils.getMySQLConnection()) {
             PreparedStatement statement = connection.prepareStatement(sql);
             int i = 1;
@@ -137,6 +139,7 @@ public class UserDaoImpl implements UserDao {
             statement.setString(i++, item.getNumber());
             statement.setString(i++, item.getEmail());
             statement.setString(i++, item.getPassword());
+            statement.setString(i++, item.getImage());
             statement.setInt(i, item.getId());
             statement.executeUpdate();
         } catch (SQLException | IllegalAccessException | InstantiationException | ClassNotFoundException e) {

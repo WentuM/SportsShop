@@ -3,6 +3,7 @@ package servlets;
 import dao.OrderDaoImpl;
 import dao.UserDaoImpl;
 import model.Order;
+import model.Product;
 import services.OrderServiceImpl;
 import services.UsersServiceImpl;
 
@@ -15,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 @WebServlet(urlPatterns = {"/basket"})
 public class BasketServlet extends HttpServlet {
@@ -35,15 +37,18 @@ public class BasketServlet extends HttpServlet {
         String email = (String) session.getAttribute("loginedUser");
         Order order = null;
         int idUser = 0;
+        int buyed = 0;
+        List<Product> list = null;
         if (email != null) {
             try {
                 idUser = usersService.findByEmail(email).getId();
-                order = orderService.findByIdUser(idUser);
+                order = orderService.findByIdUser(idUser, buyed);
+                list = orderService.findAllProductByOrder(order.getId());
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
         }
-        req.setAttribute("order", order);
+        req.setAttribute("products", list);
         req.getServletContext().getRequestDispatcher("/basket.ftl").forward(req, resp);
     }
 

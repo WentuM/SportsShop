@@ -39,9 +39,7 @@ public class ProfileServlet extends HttpServlet {
                 } catch (SQLException e) {
                     throw new IllegalStateException(e);
                 }
-                req.setAttribute("name", user.getName());
-                req.setAttribute("number", user.getNumber());
-                req.setAttribute("email", user.getEmail());
+                req.setAttribute("user", user);
                 req.getRequestDispatcher("/profile.ftl").forward(req, resp);
             }
         } else {

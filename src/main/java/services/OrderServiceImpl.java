@@ -2,8 +2,10 @@ package services;
 
 import dao.OrderDao;
 import model.Order;
+import model.Product;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public class OrderServiceImpl implements OrderService {
     private final OrderDao orderDao;
@@ -13,8 +15,13 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Order findByIdUser(int idUser) throws SQLException {
-        return orderDao.findByIdUser(idUser);
+    public Order findByIdUser(int idUser, int buyed) throws SQLException {
+        return orderDao.findByIdUser(idUser, buyed);
+    }
+
+    @Override
+    public List<Product> findAllProductByOrder(int idOrder) throws SQLException {
+        return orderDao.findAllProducts(idOrder);
     }
 
     @Override

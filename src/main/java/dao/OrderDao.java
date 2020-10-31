@@ -11,7 +11,7 @@ public interface OrderDao {
 
     public Order findById(int id) throws SQLException;
 
-    public Order findByIdUser(int idUser) throws SQLException;
+    public Order findByIdUser(int idUser, int buyed) throws SQLException;
 
     public void insert(Order order) throws SQLException;
 

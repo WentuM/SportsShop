@@ -1,12 +1,16 @@
 package services;
 
 import model.Order;
+import model.Product;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public interface OrderService {
 
-    public Order findByIdUser(int idUser) throws SQLException;
+    public Order findByIdUser(int idUser, int buyed) throws SQLException;
+
+    public List<Product> findAllProductByOrder(int idOrder) throws SQLException;
 
     public void insert(Order item) throws SQLException;
 

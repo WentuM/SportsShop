@@ -32,22 +32,24 @@
 <body>
 <#import "/include/header.ftl" as m>
 <@m.header />
+<#if user??>
 <div class="main-content"><p class="headline">Мой профиль</p>
     <div class="container">
         <div class="row">
             <div class="col">
-                <img class="profile_photo" alt="My Photo" src="resources/user.png">
+                <img class="profile_photo" alt="My Photo" src="/img?filename=${user.image}">
             </div>
             <div class="col" style="border-left: 1px solid black">
                 <p><b>Информация об этом пользователе</b></p>
-                <p>Имя: <em>${name}</em><br>
-                    Номер телефона: <em>${number}</em><br>
-                    Email: <em>${email}</em><br></p>
+                <p>Имя: <em>${user.name}</em><br>
+                    Номер телефона: <em>${user.number}</em><br>
+                    Email: <em>${user.email}</em><br></p>
                 <input type="submit" value="Выйти из аккаунта" onclick='location.href="/logout"'>
             </div>
         </div>
     </div>
 </div>
+</#if>
 <div><input class="submit" type="button" onclick='location.href="/editProfile"' value="Редактировать"></div>
 <#import "/include/footer.ftl" as n>
 <@n.footer />

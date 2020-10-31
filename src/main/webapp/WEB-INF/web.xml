@@ -104,20 +104,6 @@
     </security-constraint>
 
     <servlet>
-        <servlet-name>upload-servlet</servlet-name>
-        <servlet-class>servlets.DirUploadServlet</servlet-class>
-        <init-param>
-            <param-name>uploadDir</param-name>
-            <param-value>C:\imageList</param-value>
-        </init-param>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>upload-servlet</servlet-name>
-        <url-pattern>/upload/dir</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
         <servlet-name>HomeServlet</servlet-name>
         <servlet-class>servlets.MainServlet</servlet-class>
     </servlet>

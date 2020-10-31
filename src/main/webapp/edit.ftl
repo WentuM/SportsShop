@@ -24,7 +24,8 @@
 <#if errorString??>
     <h4>${errorString}</h4>
 </#if>
-<form method="post"><div class="main-content">
+<form method="post" action="/editProfile" enctype="multipart/form-data">
+    <div class="main-content">
         <p class="headline">Редактирование профиля</p>
         <div class="inputs"><input name="name" type="text" placeholder="Name" value="${name}"><br></div>
         <div class="inputs"><input name="email" type="email" placeholder="Email" value="${email}"><br></div>
@@ -32,7 +33,8 @@
                                    pattern="^(8|\+7)([0-9]){10}"><br></div>
         <#--        <div class="inputs"><input id="text-count" type="password" placeholder="Old Password"><br></div>-->
         <#--        <div class="inputs"><input type="password" placeholder="New Password"><br></div>-->
-        <div class="inputs"><input type="file"></div>
+
+        <div class="inputs"><input type="file" name="filename" accept=".jpg, .jpeg, .png"></div>
     </div>
     <input class="submit" type="submit" value="Принять изменения">
 </form>

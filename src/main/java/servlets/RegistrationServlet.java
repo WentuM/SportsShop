@@ -1,9 +1,13 @@
 package servlets;
 
+import dao.OrderDaoImpl;
 import dao.UserDaoImpl;
+import model.Order;
 import model.User;
 import mysql.PaswordHash;
 import mysql.Patterns;
+import services.OrderService;
+import services.OrderServiceImpl;
 import services.UsersService;
 import services.UsersServiceImpl;
 
@@ -19,11 +23,14 @@ import java.sql.SQLException;
 @WebServlet(urlPatterns = {"/register"})
 public class RegistrationServlet extends HttpServlet {
     private UsersService usersService;
+    private OrderService orderService;
 
     @Override
     public void init(ServletConfig config) throws ServletException {
         UserDaoImpl userDao = new UserDaoImpl();
         usersService = new UsersServiceImpl(userDao);
+        OrderDaoImpl orderDao = new OrderDaoImpl();
+        orderService = new OrderServiceImpl(orderDao);
     }
 
     @Override
@@ -73,14 +80,20 @@ public class RegistrationServlet extends HttpServlet {
             request.getServletContext().getRequestDispatcher("/registration.ftl").forward(request, response);
 
         } else {
+            Order order = new Order();
             password = PaswordHash.hash(password.trim());
             user = new User();
             user.setName(name);
             user.setNumber(number);
             user.setPassword(password);
             user.setEmail(email);
+            user.setImage("user.png");
+            order.setUser(user);
+            order.setBuyed(0);
+            order.setTotal_price(0);
             try {
                 usersService.createUser(user);
+                orderService.insert(order);
             } catch (SQLException e) {
                 throw new IllegalStateException(e);
             }

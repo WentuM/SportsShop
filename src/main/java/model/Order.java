@@ -7,6 +7,7 @@ public class Order {
     private User user;
     private int total_price;
     private List<Product> productList;
+    private int buyed;
 
     public int getId() {
         return id;
@@ -38,5 +39,13 @@ public class Order {
 
     public void setProductList(List<Product> productList) {
         this.productList = productList;
+    }
+
+    public int getBuyed() {
+        return buyed;
+    }
+
+    public void setBuyed(int buyed) {
+        this.buyed = buyed;
     }
 }

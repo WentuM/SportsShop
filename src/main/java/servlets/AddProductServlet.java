@@ -2,6 +2,7 @@ package servlets;
 
 import dao.OrderDaoImpl;
 import dao.UserDaoImpl;
+import model.Order;
 import model.User;
 import services.OrderServiceImpl;
 import services.UsersServiceImpl;
@@ -29,25 +30,21 @@ public class AddProductServlet extends HttpServlet {
         usersService = new UsersServiceImpl(userDao);
     }
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
-        int idProduct = (int) req.getAttribute("id");
-        int count = Integer.parseInt(req.getParameter("count"));
+        int idProduct = Integer.parseInt(req.getParameter("id"));
+        int count = Integer.parseInt(req.getParameter("quantity"));
         String email = (String) session.getAttribute("loginedUser");
         if (email != null) {
             try {
                 User user = usersService.findByEmail(email);
-                orderService.insertProduct(idProduct, user.getId() ,count);
+                Order order = orderService.findByIdUser(user.getId(), 0);
+                orderService.insertProduct(idProduct, order.getId() ,count);
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
         }
         int id = Integer.parseInt(req.getParameter("id"));
         resp.sendRedirect("/product?id=" + id);
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doGet(req, resp);
     }
 }

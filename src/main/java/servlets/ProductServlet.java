@@ -55,8 +55,6 @@ public class ProductServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int quantity = Integer.parseInt(req.getParameter("quantity"));
-        req.setAttribute("quantity", quantity);
-        resp.sendRedirect("/basket");
+        super.doGet(req, resp);
     }
 }

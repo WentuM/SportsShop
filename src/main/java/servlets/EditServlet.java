@@ -3,17 +3,23 @@ package servlets;
 import dao.UserDaoImpl;
 import model.User;
 import mysql.Patterns;
+import org.apache.commons.io.IOUtils;
 import services.UsersService;
 import services.UsersServiceImpl;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.UUID;
 
 @WebServlet(urlPatterns = {"/editProfile"})
+@MultipartConfig
 public class EditServlet extends HttpServlet {
     private UsersService usersService;
 
@@ -50,12 +56,14 @@ public class EditServlet extends HttpServlet {
         int idUser = 0;
         String nameUser = "";
         String numberUser = "";
+        String imageUser = "";
         User us = null;
         try {
             us = usersService.findByEmail(emailUser);
             idUser = us.getId();
             nameUser = us.getName();
             numberUser = us.getNumber();
+            imageUser = us.getImage();
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -97,7 +105,27 @@ public class EditServlet extends HttpServlet {
             request.setAttribute("errorString", errorString);
             request.getRequestDispatcher("/edit.ftl").forward(request, response);
         } else {
+            String uploadDir = "C:\\imageList";
+            Part file = request.getPart("filename");
+            String imgName = "";
             user = new User();
+            if (!file.getSubmittedFileName().equals("")) {
+
+                imgName = UUID.randomUUID().toString() +
+                        "-" +
+                        file.getSubmittedFileName();
+
+                IOUtils.copyLarge(
+                        file.getInputStream(),
+                        new FileOutputStream(uploadDir +
+                                File.separator + imgName
+
+                        )
+                );
+                user.setImage(imgName);
+            } else {
+                user.setImage(imageUser);
+            }
             if (name.equals(nameUser)) {
                 user.setName(nameUser);
             } else {

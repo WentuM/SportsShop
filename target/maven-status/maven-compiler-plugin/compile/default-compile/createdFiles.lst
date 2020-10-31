@@ -6,6 +6,7 @@ services\UsersService.class
 servlets\EditServlet.class
 dao\UserDao.class
 model\OrderProduct.class
+servlets\AddProductServlet.class
 dao\ManufacturerDao.class
 filters\CookieFilter.class
 servlets\MainServlet.class
@@ -43,5 +44,4 @@ mysql\MyUtils.class
 services\OrderService.class
 mysql\PaswordHash.class
 servlets\PromoServlet.class
-servlets\DirUploadServlet.class
 servlets\ManufacturerServlet.class

@@ -39,13 +39,17 @@
         </tr>
         </thead>
         <tbody>
-        <#list order.productList as product>
+        <#assign count = 1>
+        <#list products as product>
         <tr>
-            <th scope="row">1</th>
-            <td>product.name</td>
-            <td>product.salary</td>
-            <td>product.count</td>
-            <td><input type="submit" value="Удалить"></td>
+            <th scope="row">${count}</th>
+            <#assign count = count + 1>
+            <td>${product.name}</td>
+            <td>${product.price}</td>
+            <td>${product.count}</td>
+            <form method="post">
+                <td><input type="submit" value="Удалить"></td>
+            </form>
         </tr>
         </#list>
         </tbody>
