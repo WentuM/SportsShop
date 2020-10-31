@@ -21,4 +21,9 @@ public class ProductServiceImpl implements ProductService{
     public Product findById(int id) throws SQLException {
         return productDao.findById(id);
     }
+
+    @Override
+    public Product findByName(String name) throws SQLException {
+        return productDao.findByName(name);
+    }
 }

@@ -47,16 +47,16 @@
             <td>${product.name}</td>
             <td>${product.price}</td>
             <td>${product.count}</td>
-            <form method="post">
-                <td><input type="submit" value="Удалить"></td>
-            </form>
+            <td><input type="submit" value="Удалить" onclick='location.href="/deleteProduct?idProduct=${product.id}&idOrder=${orderId}&count=${product.count}"'></td>
         </tr>
         </#list>
         </tbody>
     </table>
-    <p style="margin-bottom: 5px"><em>Суммарная цена: 2350 рублей</em></p>
+    <p style="margin-bottom: 5px"><em>Суммарная цена: ${allprice} рублей</em></p>
 </div>
-<input class="submit" type="submit" value="Оформить" onclick='location.href="/order"'>
+<form method="post" action="/basket">
+    <input class="submit" type="submit" value="Оформить">
+</form>
 <#import "/include/footer.ftl" as n>
 <@n.footer />
 <#include "/include/bootstrap-scripts.ftl">

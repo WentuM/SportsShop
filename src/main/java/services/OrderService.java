@@ -14,9 +14,11 @@ public interface OrderService {
 
     public void insert(Order item) throws SQLException;
 
-    public void insertProduct(int idProduct, int idOrder, int count) throws SQLException;
+    public void insertProduct(int idProduct, int idOrder, int count, String flagId) throws SQLException;
 
     public void update(Order item) throws SQLException;
 
     public void delete(Order item) throws SQLException;
+
+    public void deleteProduct(int orderId, int productId, int count) throws SQLException;
 }

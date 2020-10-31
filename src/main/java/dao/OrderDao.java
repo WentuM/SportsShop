@@ -15,10 +15,13 @@ public interface OrderDao {
 
     public void insert(Order order) throws SQLException;
 
-    public void insertProduct(int idProduct, int idOrder, int count) throws SQLException;
+    public void insertProduct(int idProduct, int idOrder, int count, String flagId) throws SQLException;
 
-    public void update(Order item) throws SQLException;
+    public void insertTotalPrice(int idOrder, int totalPrice);
 
     public void delete(Order item) throws SQLException;
+
+    public void deleteProduct(int idProduct, int idOrder, int count) throws SQLException;
+
 
 }

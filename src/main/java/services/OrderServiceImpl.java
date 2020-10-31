@@ -30,8 +30,8 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public void insertProduct(int idProduct, int idOrder, int count) throws SQLException {
-        orderDao.insertProduct(idProduct, idOrder, count);
+    public void insertProduct(int idProduct, int idOrder, int count, String flagId) throws SQLException {
+        orderDao.insertProduct(idProduct, idOrder, count, flagId);
     }
 
     @Override
@@ -42,5 +42,10 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public void delete(Order item) throws SQLException {
 
+    }
+
+    @Override
+    public void deleteProduct(int orderId, int productId, int count) throws SQLException {
+        orderDao.deleteProduct(orderId, productId, count);
     }
 }

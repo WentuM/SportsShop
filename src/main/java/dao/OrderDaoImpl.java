@@ -13,6 +13,7 @@ import java.util.List;
 public class OrderDaoImpl implements OrderDao {
     UserDaoImpl userDao = new UserDaoImpl();
     ProductDaoImpl productDao = new ProductDaoImpl();
+
     @Override
     public List<Product> findAllProducts(int idOrder) throws SQLException {
         String sql = "SELECT * FROM orderproduct WHERE order_id = ?";
@@ -59,15 +60,16 @@ public class OrderDaoImpl implements OrderDao {
         try {
             connection = MySQLConnUtils.getMySQLConnection();
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setLong(1, id);
+            statement.setInt(1, id);
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 int idUser = rs.getInt("user_id");
                 User user = userDao.findById(idUser);
                 order = new Order();
-                order.setId(rs.getInt(id));
+                order.setId(rs.getInt("id"));
                 order.setUser(user);
                 order.setTotal_price(rs.getInt("total_price"));
+                order.setBuyed(rs.getInt("buyed"));
             }
         } catch (SQLException | ClassNotFoundException e) {
             throw new IllegalStateException(e);
@@ -141,14 +143,20 @@ public class OrderDaoImpl implements OrderDao {
     }
 
     @Override
-    public void insertProduct(int idProduct, int idOrder, int count) throws SQLException {
+    public void insertProduct(int idProduct, int idOrder, int count, String flagId) throws SQLException {
         //language=SQL
-        String sql = "INSERT INTO orderproduct (order_id, product_id, `count`) VALUES (?, ?, ?);";
+        String sql = "INSERT INTO orderproduct (order_id, product_id, `count`, flag_id) VALUES (?, ?, ?, ?) ON DUPLICATE KEY UPDATE `count` = `count` + ?;";
         try (Connection connection = MySQLConnUtils.getMySQLConnection()) {
             PreparedStatement statement = connection.prepareStatement(sql);
             int i = 1;
+            Product product = productDao.findById(idProduct);
+            int total = findById(idOrder).getTotal_price();
+            total += product.getPrice() * count;
+            insertTotalPrice(idOrder, total);
             statement.setInt(i++, idOrder);
             statement.setInt(i++, idProduct);
+            statement.setInt(i++, count);
+            statement.setString(i++, flagId);
             statement.setInt(i, count);
             statement.executeUpdate();
         } catch (SQLException | IllegalAccessException | InstantiationException | ClassNotFoundException e) {
@@ -157,12 +165,44 @@ public class OrderDaoImpl implements OrderDao {
     }
 
     @Override
-    public void update(Order item) throws SQLException {
-
+    public void insertTotalPrice(int idOrder, int totalPrice) {
+        //language=SQL
+        String sql = "UPDATE `order` SET total_price = ? WHERE id = ?";
+        try (Connection connection = MySQLConnUtils.getMySQLConnection()) {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            int i = 1;
+            statement.setInt(i++, totalPrice);
+            statement.setInt(i, idOrder);
+            statement.executeUpdate();
+        } catch (SQLException | IllegalAccessException | InstantiationException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
+
 
     @Override
     public void delete(Order item) throws SQLException {
 
     }
+
+    @Override
+    public void deleteProduct(int idProduct, int idOrder, int count) throws SQLException {
+        //language=SQL
+        String sql = "DELETE FROM orderproduct WHERE order_id = ? AND product_id = ?";
+        try (Connection connection = MySQLConnUtils.getMySQLConnection()) {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            int price = productDao.findById(idProduct).getPrice();
+            int total = findById(idOrder).getTotal_price();
+            total -= price * count;
+            insertTotalPrice(idOrder, total);
+            int i = 1;
+            statement.setInt(i++, idOrder);
+            statement.setInt(i, idProduct);
+            statement.executeUpdate();
+        } catch (SQLException | IllegalAccessException | InstantiationException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }
