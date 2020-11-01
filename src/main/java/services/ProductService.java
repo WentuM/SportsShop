@@ -10,4 +10,5 @@ public interface ProductService {
     public Product findById(int id) throws SQLException;
     public Product findByName(String name) throws SQLException;
     public void updateCountProduct(Product product) throws SQLException;
+    public List<Product> searchByName(String name) throws SQLException;
 }

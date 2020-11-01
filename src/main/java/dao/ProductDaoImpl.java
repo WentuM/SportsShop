@@ -128,6 +128,41 @@ public class ProductDaoImpl implements ProductDao {
     }
 
     @Override
+    public List<Product> findListByName(String name) throws SQLException {
+        //language=SQL
+        String sql = "SELECT * FROM product WHERE `name` LIKE ?;";
+        List<Product> result = new ArrayList<>();
+        Connection connection = null;
+        try {
+            connection = MySQLConnUtils.getMySQLConnection();
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, name + "%");
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                Product product = new Product();
+                product.setId(rs.getInt("id"));
+                product.setName(rs.getString("name"));
+                product.setPrice(rs.getInt("price"));
+                product.setImageProduct(rs.getString("imageProduct"));
+                product.setCount(rs.getInt("count"));
+                result.add(product);
+            }
+        } catch (ClassNotFoundException e) {
+            throw new IllegalStateException(e);
+        } catch (IllegalAccessException | InstantiationException e) {
+            e.printStackTrace();
+        } finally {
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException ignore) {
+                }
+            }
+        }
+        return result;
+    }
+
+    @Override
     public void insert(Product item) throws SQLException {
 
     }

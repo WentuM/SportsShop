@@ -63,6 +63,45 @@
             background: #455e84;
         }
     </style>
+    <script>
+        function updateFeed(organizations, divElement) {
+            let htmlElement = '';
+            for (let i = 0; i < organizations.length; i++) {
+                htmlElement += '<div class="col">\n';
+                htmlElement += '    <a style="display: block; color: black !important;" href="/product?id=' + organizations[i]['id'] + '">';
+                htmlElement += '        <div class="card">';
+                htmlElement += '            <input type="hidden" name="product" value="id"/>';
+                htmlElement += '                <img class="card-img-top" src="' + organizations[i]['imageProduct'] + '" alt="Card image cap">';
+                htmlElement += '            <div class="card-body">';
+                htmlElement += '            <h5 class="card-title">' + organizations[i]['name'] + '</h5>';
+                htmlElement += '                <p class="card-text">' + organizations[i]['price'] + ' рублей</p>';
+                htmlElement += '                </div>';
+                htmlElement += '            </div>';
+                htmlElement += '        <input class="submit" type="submit" value="В наличии" disabled>';
+                htmlElement += '        </a>';
+                htmlElement += '</div>';
+            }
+
+            divElement.html(htmlElement);
+        }
+
+        function sendAjax(text) {
+            let data = {"search": text};
+
+            $.ajax({
+                type: "POST",
+                url: "/catalog",
+                data: JSON.stringify(data),
+                success: function (response) {
+                    updateFeed(response, $('#table'))
+                },
+                dataType: "json",
+                contentType: "application/json"
+            });
+        }
+    </script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js" charset="utf-8"></script>
     <#include "/include/bootstrap-link.ftl">
 </head>
 <body>
@@ -146,30 +185,32 @@
                     <input class="sub" type="submit" value="Принять"></form>
             </div>
             <div class="col-sm-8" style="border-left: 1px solid black">
-                <form><input class="search"
-                             placeholder="Поиск по названию..."
-                             type="search"><input type="submit" class="search-but" value="Искать"
-                                                  style="margin-left: 5px"></form>
+                <form autocomplete="off">
+                    <input id="myInput" type="text" class="search" placeholder="Поиск по названию...">
+                    <input type="button" onclick="sendAjax($('#myInput').val())"
+                                                class="search-but" value="Искать"
+                                                style="margin-left: 5px">
+                </form>
                 <div class="container">
-                    <div class="row">
+                    <div class="row" id="table">
                         <#list products as product>
                             <div class="col"> <!--Общее для всех продуктов-->
                                 <a style="display: block; color: black !important;" href="/product?id=#{product.id}">
-                                <div class="card">
-                                    <input type="hidden" name="product" value="id"/>
-                                    <!--Скрытое поле, результат чего отправляется на сервак при нажатии кнопки; value - PK продукта-->
-                                    <img class="card-img-top" src="${product.imageProduct}" alt="Card image cap">
-                                    <div class="card-body">
-                                        <h5 class="card-title">${product.name}</h5>
-                                        <p class="card-text">${product.price} рублей</p>
+                                    <div class="card">
+                                        <input type="hidden" name="product" value="id"/>
+                                        <!--Скрытое поле, результат чего отправляется на сервак при нажатии кнопки; value - PK продукта-->
+                                        <img class="card-img-top" src="${product.imageProduct}" alt="Card image cap">
+                                        <div class="card-body">
+                                            <h5 class="card-title">${product.name}</h5>
+                                            <p class="card-text">${product.price} рублей</p>
+                                        </div>
                                     </div>
-                                </div>
-                                <#if (product.count > 0)>
-                                    <input class="submit" type="submit" value="В наличии" disabled>
-                                <#else>
-                                    <input class="submit" type="submit" value="Нет в наличии" disabled>
-                                </#if>
-                                    </a>
+                                    <#if (product.count > 0)>
+                                        <input class="submit" type="submit" value="В наличии" disabled>
+                                    <#else>
+                                        <input class="submit" type="submit" value="Нет в наличии" disabled>
+                                    </#if>
+                                </a>
                             </div>
                         </#list>
                     </div>
@@ -180,6 +221,11 @@
 </div>
 <#import "/include/footer.ftl" as n>
 <@n.footer />
-<#include "/include/bootstrap-scripts.ftl">
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
 </body>
 </html>

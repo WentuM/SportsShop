@@ -1,7 +1,9 @@
 package servlets;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import dao.ProductDaoImpl;
 import model.Product;
+import org.json.JSONObject;
 import services.ProductService;
 import services.ProductServiceImpl;
 
@@ -15,9 +17,11 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @WebServlet(urlPatterns = {"/catalog"})
 public class CatalogServlet extends HttpServlet {
+    private ObjectMapper objectMapper = new ObjectMapper();
     private ProductService productService;
 
     @Override
@@ -40,6 +44,20 @@ public class CatalogServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        List<Product> list = null;
+        String strJson = req.getReader().lines().collect(Collectors.joining());
+        JSONObject jsonObject = new JSONObject(strJson.trim());
+        String search = jsonObject.getString("search");
 
+        if (search != null) {
+            try {
+                list = productService.searchByName(search);
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }
+        String jsonResponse = objectMapper.writeValueAsString(list);
+        resp.setContentType("application/json");
+        resp.getWriter().println(jsonResponse);
     }
 }

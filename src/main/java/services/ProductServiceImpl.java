@@ -31,4 +31,9 @@ public class ProductServiceImpl implements ProductService{
     public void updateCountProduct(Product product) throws SQLException {
         productDao.update(product);
     }
+
+    @Override
+    public List<Product> searchByName(String name) throws SQLException {
+        return productDao.findListByName(name);
+    }
 }
