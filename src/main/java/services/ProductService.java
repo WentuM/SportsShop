@@ -9,4 +9,5 @@ public interface ProductService {
     public List<Product> findAll() throws SQLException;
     public Product findById(int id) throws SQLException;
     public Product findByName(String name) throws SQLException;
+    public void updateCountProduct(Product product) throws SQLException;
 }

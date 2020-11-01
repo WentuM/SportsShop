@@ -1,10 +1,13 @@
 package servlets;
 
 import dao.OrderDaoImpl;
+import dao.ProductDaoImpl;
 import dao.UserDaoImpl;
 import model.Order;
 import model.Product;
+import model.User;
 import services.OrderServiceImpl;
+import services.ProductServiceImpl;
 import services.UsersServiceImpl;
 
 import javax.servlet.ServletConfig;
@@ -18,8 +21,10 @@ import java.util.List;
 
 @WebServlet(urlPatterns = {"/basket"})
 public class BasketServlet extends HttpServlet {
+    private String errorMessage = "";
     private OrderServiceImpl orderService;
     private UsersServiceImpl usersService;
+    private ProductServiceImpl productService;
 
     @Override
     public void init(ServletConfig config) throws ServletException {
@@ -27,6 +32,8 @@ public class BasketServlet extends HttpServlet {
         orderService = new OrderServiceImpl(orderDao);
         UserDaoImpl userDao = new UserDaoImpl();
         usersService = new UsersServiceImpl(userDao);
+        ProductDaoImpl productDao = new ProductDaoImpl();
+        productService = new ProductServiceImpl(productDao);
     }
 
     @Override
@@ -49,8 +56,10 @@ public class BasketServlet extends HttpServlet {
                 req.setAttribute("orderId", order.getId());
                 req.setAttribute("allprice", order.getTotal_price());
             }
+            req.setAttribute("errorMessage", errorMessage);
+            errorMessage = "";
             req.setAttribute("products", list);
-            req.getServletContext().getRequestDispatcher("/basket.ftl").forward(req, resp);
+            req.getRequestDispatcher("/basket.ftl").forward(req, resp);
         } else {
             HashMap<String, Product> hashMap = new HashMap<>();
             Product product = null;
@@ -75,11 +84,42 @@ public class BasketServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setContentType("text/html; charset=UTF-8");
         HttpSession session = req.getSession();
         String email = (String) session.getAttribute("loginedUser");
         if (email == null) {
             resp.sendRedirect("/login");
         } else {
+            User user = null;
+            Order order = null;
+            List<Product> productList = null;
+            try {
+                user = usersService.findByEmail(email);
+                order = orderService.findByIdUser(user.getId(), 0);
+                productList = orderService.findAllProductByOrder(order.getId());
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+            if (order != null && order.getTotal_price() == 0) {
+                errorMessage = "Добавьте в заказ что-нибудь";
+                resp.sendRedirect("/basket");
+                return;
+            }
+            for (Product product : productList) {
+                Product product1 = null;
+                try {
+                    product1 = productService.findById(product.getId());
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
+                if (product.getCount() > product1.getCount()) {
+                    errorMessage = "На данный момент количество товара  " + product1.getName() + ":  " + product1.getCount();
+                }
+                if (!errorMessage.equals("")) {
+                    resp.sendRedirect("/basket");
+                    return;
+                }
+            }
             resp.sendRedirect("/order");
         }
     }

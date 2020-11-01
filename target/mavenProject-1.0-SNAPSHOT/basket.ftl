@@ -12,10 +12,12 @@
             border-top: none !important;
             border-left: 1px solid black !important;
         }
+
         th {
-            border-top: none!important;
+            border-top: none !important;
             border-bottom: none !important;
         }
+
         .submit {
             margin-left: 44%;
             width: 150px;
@@ -28,28 +30,35 @@
 <#import "/include/header.ftl" as m>
 <@m.header />
 <div class="main-content"><p class="headline">Корзина</p>
+    <#if errorMessage??>
+        <span style="color: red">${errorMessage}</span>
+    </#if>
     <table class="table">
         <thead>
         <tr>
             <th scope="col">#</th>
             <th scope="col">Название</th>
-            <th scope="col">Цена </th>
+            <th scope="col">Цена</th>
             <th scope="col">Кол-во</th>
             <th scope="col">-</th>
         </tr>
         </thead>
         <tbody>
         <#assign count = 1>
-        <#list products as product>
-        <tr>
-            <th scope="row">${count}</th>
-            <#assign count = count + 1>
-            <td>${product.name}</td>
-            <td>${product.price}</td>
-            <td>${product.count}</td>
-            <td><input type="submit" value="Удалить" onclick='location.href="/deleteProduct?idProduct=${product.id}&idOrder=${orderId}&count=${product.count}"'></td>
-        </tr>
-        </#list>
+        <#if products??>
+            <#list products as product>
+                <tr>
+                    <th scope="row">${count}</th>
+                    <#assign count = count + 1>
+                    <td>${product.name}</td>
+                    <td>${product.price}</td>
+                    <td>${product.count}</td>
+                    <td><input type="submit" value="Удалить"
+                               onclick='location.href="/deleteProduct?idProduct=${product.id}&idOrder=${orderId}&count=${product.count}"'>
+                    </td>
+                </tr>
+            </#list>
+        </#if>
         </tbody>
     </table>
     <p style="margin-bottom: 5px"><em>Суммарная цена: ${allprice} рублей</em></p>

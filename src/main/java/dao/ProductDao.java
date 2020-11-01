@@ -10,6 +10,6 @@ public interface ProductDao {
     public Product findById(int id) throws SQLException;
     public Product findByName(String name) throws SQLException;
     public void insert(Product item) throws SQLException;
-    public void update(Product item) throws SQLException;
+    public void update(Product product) throws SQLException;
     public void delete(Product item) throws SQLException;
 }

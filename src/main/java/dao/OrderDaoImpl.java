@@ -186,6 +186,25 @@ public class OrderDaoImpl implements OrderDao {
     }
 
     @Override
+    public void updateBuyed(int idOrder, User user) throws SQLException {
+        //language=SQL
+        String sql = "UPDATE `order` SET buyed = 1 WHERE id = ?";
+        try (Connection connection = MySQLConnUtils.getMySQLConnection()) {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            int i = 1;
+            Order order = new Order();
+            order.setUser(user);
+            order.setBuyed(0);
+            order.setTotal_price(0);
+            insert(order);
+            statement.setInt(i, idOrder);
+            statement.executeUpdate();
+        } catch (SQLException | IllegalAccessException | InstantiationException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
     public void deleteProduct(int idProduct, int idOrder, int count) throws SQLException {
         //language=SQL
         String sql = "DELETE FROM orderproduct WHERE order_id = ? AND product_id = ?";

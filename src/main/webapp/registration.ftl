@@ -25,15 +25,15 @@
 <#import "/include/header.ftl" as m>
 <@m.header />
 <#if errorString??>
-    <h4>${errorString}</h4>
+    <span style="color: red; text-align: center">${errorString}</span>
 </#if>
 <form method="post"><div class="main-content">
         <p class="headline">Регистрация</p>
-        <div class="inputs"><input name="name" type="text" placeholder="Name" required><br></div>
+        <div class="inputs"><input name="name" type="text" placeholder="Name" pattern="[а-яА-Я]{0,}|[a-zA-Z]{0,}" maxlength="20" required><br></div>
         <div class="inputs"><input name="email" type="email" placeholder="Email" required><br><small>*Пример: example@ex.com</small></div>
 
         <div class="inputs"><input name="number" type="text" placeholder="Number" pattern="^(8|+7)+[0-9]{10}" required><br><small>*Без разделителей, 8../+7..</small></div>
-        <div class="inputs"><input name="password" type="password" placeholder="Password" required><br><small>*Не менее 6 символов</small></div>
+        <div class="inputs"><input name="password" id="password" type="password" placeholder="Password" required><br><small>*Не менее 6 символов</small></div>
         <a href="/login" style="margin: 0 auto; color: black !important; font-size: 20px !important;">Войти в аккаунт</a>
     </div>
     <input class="submit" type="submit" value="Зарегистрироваться">

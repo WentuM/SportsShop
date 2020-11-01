@@ -165,7 +165,7 @@
                                     </div>
                                 </div>
                                 <#if (product.count > 0)>
-                                    <input class="submit" type="submit" value="В корзину">
+                                    <input class="submit" type="submit" value="В наличии" disabled>
                                 <#else>
                                     <input class="submit" type="submit" value="Нет в наличии" disabled>
                                 </#if>

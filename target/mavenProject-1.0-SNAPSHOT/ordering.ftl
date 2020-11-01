@@ -27,12 +27,12 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-4" style="text-align: left; border-right: 1px solid black">
-                <p>Заказчик: <input type="text" placeholder="Вася" disabled><br>
-                    Номер телефона: <input type="text" placeholder="88005553535" disabled><br></p>
+                <p>Заказчик: <input type="text" placeholder="${nameUser}" disabled><br>
+                    Номер телефона: <input type="text" placeholder="${numberUser}" disabled><br></p>
                 <small><a href="/editProfile" style="color: #455e84 !important;">Редактировать профиль</a></small>
             </div>
             <div class="col-sm-8"  style="text-align: left;" >
-                Сумма заказа: 2350 рублей (+ учёт скидок)<br>
+                Сумма заказа: ${price} рублей (+ учёт скидок)<br>
                 Способ оплаты: при получении<br>
                 Способ доставки: самовывоз из магазина (Россия, респ. Татарстан, г. Казань, Кремлёвская 35)<br>
                 Стоимость доставки: бесплатно<br>
@@ -41,7 +41,9 @@
         </div>
     </div>
 </div>
-<input type="submit" value="Подтвердить" class="submit">
+<form method="post" action="/order">
+<input type="submit" value="Подтвердить" class="submit" data-toggle="modal" data-target="#exampleModal">
+</form>
 <#import "/include/footer.ftl" as n>
 <@n.footer />
 <#include "/include/bootstrap-scripts.ftl">

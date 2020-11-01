@@ -67,6 +67,10 @@ public class MainServlet extends HttpServlet {
 
             }
         }
+        if (req.getParameter("idOrder") != null) {
+            int idOrder = Integer.parseInt(req.getParameter("idOrder"));
+            req.setAttribute("idOrder", idOrder);
+        }
         req.getRequestDispatcher("/main.ftl").forward(req, resp);
     }
 

@@ -22,6 +22,7 @@ import java.util.UUID;
 @MultipartConfig
 public class EditServlet extends HttpServlet {
     private UsersService usersService;
+    private String errorMessage = "";
 
     @Override
     public void init(ServletConfig config) throws ServletException {
@@ -40,6 +41,8 @@ public class EditServlet extends HttpServlet {
             } catch (SQLException e) {
                 throw new IllegalStateException(e);
             }
+            req.setAttribute("errorMessage", errorMessage);
+            errorMessage = "";
             req.setAttribute("name", user.getName());
             req.setAttribute("number", user.getNumber());
             req.setAttribute("email", user.getEmail());
@@ -77,7 +80,7 @@ public class EditServlet extends HttpServlet {
         if (email == null || email.length() == 0 || name == null || name.length() == 0 ||
                 number == null || number.length() == 0) {
             hasError = true;
-            errorString = "Заполните все поля формы регистрации";
+            errorString = "Заполните все поля формы редактирования профиля";
         }
         String check = Patterns.pattern(name, number, email);
         if (check.equals("ok")) {
@@ -102,8 +105,8 @@ public class EditServlet extends HttpServlet {
         }
 
         if (hasError) {
-            request.setAttribute("errorString", errorString);
-            request.getRequestDispatcher("/edit.ftl").forward(request, response);
+            errorMessage = errorString;
+            response.sendRedirect("/editProfile");
         } else {
             String uploadDir = "C:\\imageList";
             Part file = request.getPart("filename");

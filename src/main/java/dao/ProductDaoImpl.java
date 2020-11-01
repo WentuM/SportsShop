@@ -15,6 +15,7 @@ import java.util.List;
 public class ProductDaoImpl implements ProductDao {
     private ReviewDaoImpl reviewDao = new ReviewDaoImpl();
     private ManufacturerDaoImpl manufacturerDao = new ManufacturerDaoImpl();
+
     @Override
     public List<Product> findAll() throws SQLException {
         //language=SQL
@@ -107,6 +108,9 @@ public class ProductDaoImpl implements ProductDao {
                 product = new Product();
                 product.setId(rs.getInt("id"));
                 product.setName(rs.getString("name"));
+                product.setImageProduct(rs.getString("imageProduct"));
+                product.setPrice(rs.getInt("price"));
+                product.setCount(rs.getInt("count"));
             }
         } catch (SQLException | ClassNotFoundException e) {
             throw new IllegalStateException(e);
@@ -129,8 +133,19 @@ public class ProductDaoImpl implements ProductDao {
     }
 
     @Override
-    public void update(Product item) throws SQLException {
-
+    public void update(Product product) throws SQLException {
+        String sql = "UPDATE product SET `count` = ? WHERE id = ?";
+        try (Connection connection = MySQLConnUtils.getMySQLConnection()) {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            int i = 1;
+            Product product1 = findById(product.getId());
+            int totalCount = product1.getCount() - product.getCount();
+            statement.setInt(i++, totalCount);
+            statement.setInt(i, product.getId());
+            statement.executeUpdate();
+        } catch (SQLException | IllegalAccessException | InstantiationException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

@@ -28,6 +28,26 @@
 <#import "/include/header.ftl" as m>
 <@m.header />
 <div class="main-content"><p class="headline">Добро пожаловать в INPROTEIN!</p>
+    <#if idOrder??>
+    <!— Modal —>
+    <div class="modal show" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Успешный заказ</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Заказ успешно оформлен <br>
+                    ID - вашего заказа - ${idOrder} <br>
+                    Предъявите его на кассе, оплатите требуемую сумму и получите свой заказ.
+                </div>
+            </div>
+        </div>
+    </div>
+    </#if>
     <div class="description">
         <p>
             Занятия спортом – дело хорошее, но для того,
@@ -46,5 +66,10 @@
 <#import "/include/footer.ftl" as n>
 <@n.footer />
 <#include "/include/bootstrap-scripts.ftl">
+<script type="text/javascript">
+    $(window).on('load',function(){
+        $('#exampleModal').modal('show');
+    });
+</script>
 </body>
 </html>

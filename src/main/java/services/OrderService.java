@@ -2,6 +2,7 @@ package services;
 
 import model.Order;
 import model.Product;
+import model.User;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -21,4 +22,6 @@ public interface OrderService {
     public void delete(Order item) throws SQLException;
 
     public void deleteProduct(int orderId, int productId, int count) throws SQLException;
+
+    public void createNewOrderAfterBuying(int idOrder, User user) throws SQLException;
 }

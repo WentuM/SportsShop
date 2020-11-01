@@ -3,6 +3,7 @@ package services;
 import dao.OrderDao;
 import model.Order;
 import model.Product;
+import model.User;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -47,5 +48,10 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public void deleteProduct(int orderId, int productId, int count) throws SQLException {
         orderDao.deleteProduct(orderId, productId, count);
+    }
+
+    @Override
+    public void createNewOrderAfterBuying(int idOrder, User user) throws SQLException {
+        orderDao.updateBuyed(idOrder, user);
     }
 }

@@ -28,7 +28,7 @@
 <#import "/include/header.ftl" as m>
 <@m.header />
 <#if errorString??>
-    <h2>${errorString}</h2>
+    <span style="color: red; text-align: center">${errorString}</span>
 </#if>
 <form method="post"><div class="main-content">
         <p class="headline">Вход в профиль</p>
