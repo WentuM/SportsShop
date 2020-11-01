@@ -74,8 +74,22 @@ public class OrderingSerlvet extends HttpServlet {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        if (price > 2000) {
-            price -= 200;
+        int flag = 0;
+        int total = 0;
+        if (order != null) {
+            List<Product> productList = order.getProductList();
+            for (Product product: productList) {
+                total += product.getCount();
+                if (total > 5) {
+                    flag = 1;
+                    break;
+                }
+            }
+        }
+        if (price > 4000) {
+            price -= 1000;
+        } else if (flag == 1) {
+            price = price / 100 * 80;
         }
         if (user != null && order != null) {
             req.setAttribute("nameUser", user.getName());

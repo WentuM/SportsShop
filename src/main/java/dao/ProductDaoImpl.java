@@ -111,6 +111,7 @@ public class ProductDaoImpl implements ProductDao {
                 product.setImageProduct(rs.getString("imageProduct"));
                 product.setPrice(rs.getInt("price"));
                 product.setCount(rs.getInt("count"));
+                product.setCategory(rs.getString("category"));
             }
         } catch (SQLException | ClassNotFoundException e) {
             throw new IllegalStateException(e);
@@ -145,6 +146,80 @@ public class ProductDaoImpl implements ProductDao {
                 product.setPrice(rs.getInt("price"));
                 product.setImageProduct(rs.getString("imageProduct"));
                 product.setCount(rs.getInt("count"));
+                product.setCategory(rs.getString("category"));
+                result.add(product);
+            }
+        } catch (ClassNotFoundException e) {
+            throw new IllegalStateException(e);
+        } catch (IllegalAccessException | InstantiationException e) {
+            e.printStackTrace();
+        } finally {
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException ignore) {
+                }
+            }
+        }
+        return result;
+    }
+
+    @Override
+    public List<Product> findListByCategory(String name) throws SQLException {
+        //language=SQL
+        String sql = "SELECT * FROM product WHERE category = ?;";
+        List<Product> result = new ArrayList<>();
+        Connection connection = null;
+        try {
+            connection = MySQLConnUtils.getMySQLConnection();
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, name);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                Product product = new Product();
+                product.setId(rs.getInt("id"));
+                product.setName(rs.getString("name"));
+                product.setPrice(rs.getInt("price"));
+                product.setImageProduct(rs.getString("imageProduct"));
+                product.setCount(rs.getInt("count"));
+                product.setCategory(rs.getString("category"));
+                result.add(product);
+            }
+        } catch (ClassNotFoundException e) {
+            throw new IllegalStateException(e);
+        } catch (IllegalAccessException | InstantiationException e) {
+            e.printStackTrace();
+        } finally {
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException ignore) {
+                }
+            }
+        }
+        return result;
+    }
+
+    @Override
+    public List<Product> findListByCategoryAndName(String name, String category) throws SQLException {
+        //language=SQL
+        String sql = "SELECT * FROM product WHERE `name` LIKE ? AND category = ?;";
+        List<Product> result = new ArrayList<>();
+        Connection connection = null;
+        try {
+            connection = MySQLConnUtils.getMySQLConnection();
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, name + "%");
+            statement.setString(2, category);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                Product product = new Product();
+                product.setId(rs.getInt("id"));
+                product.setName(rs.getString("name"));
+                product.setPrice(rs.getInt("price"));
+                product.setImageProduct(rs.getString("imageProduct"));
+                product.setCount(rs.getInt("count"));
+                product.setCategory(rs.getString("category"));
                 result.add(product);
             }
         } catch (ClassNotFoundException e) {

@@ -139,7 +139,7 @@
 
                         <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
                             <div class="card-body description">
-                                Категория: Протеиновый батончик<br>
+                                Категория: ${product.category}<br>
                                 Производитель: <input type="button" onclick='location.href="/manufacturer?manufacturer=${product.manufacturer.id}"' value="${product.manufacturer.name}"><br>
                                 Цена: ${product.price} р/шт<br>
                             </div>

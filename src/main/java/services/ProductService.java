@@ -11,4 +11,6 @@ public interface ProductService {
     public Product findByName(String name) throws SQLException;
     public void updateCountProduct(Product product) throws SQLException;
     public List<Product> searchByName(String name) throws SQLException;
+    public List<Product> searchByCategory(String name) throws SQLException;
+    public List<Product> searchByCategoryAndName(String name, String category) throws SQLException;
 }

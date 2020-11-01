@@ -64,20 +64,37 @@
         }
     </style>
     <script>
-        function updateFeed(organizations, divElement) {
+        function check() {
+            var valueRadio = "";
+            var inp = document.getElementsByClassName('form-check-input');
+            for (var i = 0; i < inp.length; i++) {
+                if (inp[i].type === "radio" && inp[i].checked) {
+                    valueRadio = inp[i].value;
+                }
+            }
+            return valueRadio;
+        }
+
+        function updateFeed(products, divElement) {
             let htmlElement = '';
-            for (let i = 0; i < organizations.length; i++) {
+            var string = "";
+            for (let i = 0; i < products.length; i++) {
+                if (products[i]['count'] > 0) {
+                    string = "В наличии";
+                } else {
+                    string = "Нет в наличии";
+                }
                 htmlElement += '<div class="col">\n';
-                htmlElement += '    <a style="display: block; color: black !important;" href="/product?id=' + organizations[i]['id'] + '">';
+                htmlElement += '    <a style="display: block; color: black !important;" href="/product?id=' + products[i]['id'] + '">';
                 htmlElement += '        <div class="card">';
                 htmlElement += '            <input type="hidden" name="product" value="id"/>';
-                htmlElement += '                <img class="card-img-top" src="' + organizations[i]['imageProduct'] + '" alt="Card image cap">';
+                htmlElement += '                <img class="card-img-top" src="' + products[i]['imageProduct'] + '" alt="Card image cap">';
                 htmlElement += '            <div class="card-body">';
-                htmlElement += '            <h5 class="card-title">' + organizations[i]['name'] + '</h5>';
-                htmlElement += '                <p class="card-text">' + organizations[i]['price'] + ' рублей</p>';
+                htmlElement += '            <h5 class="card-title">' + products[i]['name'] + '</h5>';
+                htmlElement += '                <p class="card-text">' + products[i]['price'] + ' рублей</p>';
                 htmlElement += '                </div>';
                 htmlElement += '            </div>';
-                htmlElement += '        <input class="submit" type="submit" value="В наличии" disabled>';
+                htmlElement += '        <input class="submit" type="submit" value="' + string + '" disabled>';
                 htmlElement += '        </a>';
                 htmlElement += '</div>';
             }
@@ -86,11 +103,14 @@
         }
 
         function sendAjax(text) {
-            let data = {"search": text};
+            let data = {
+                "search": text,
+                "search2": check()
+            };
 
             $.ajax({
                 type: "POST",
-                url: "/catalog",
+                url: "/searchCategory",
                 data: JSON.stringify(data),
                 success: function (response) {
                     updateFeed(response, $('#table'))
@@ -111,94 +131,66 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-4"><p><b>Фильтры</b></p>
-                <form id="filter">
-                    <table>
-                        <th>По категории:</th>
-                        <tr>
-                            <td>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="vitamins" value="vitamins">
-                                    <label class="form-check-label" for="vitamins">Витамины</label>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="protein" value="protein">
-                                    <label class="form-check-label" for="protein">Протеиновые батончики</label>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="izo" value="izo">
-                                    <label class="form-check-label" for="protein">Изотоник</label>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="minerals" value="minerals">
-                                    <label class="form-check-label" for="protein">Минералы и микроэлементы</label>
-                                </div>
-                            </td>
-                        </tr>
-                        <th>По цене:</th>
-                        <tr>
-                            <td>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="low" value="low">
-                                    <label class="form-check-label" for="low">до 500 рублей</label>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="medium" value="medium">
-                                    <label class="form-check-label" for="low">от 500 до 2000 рублей</label>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="many" value="many">
-                                    <label class="form-check-label" for="low">от 2000 рублей</label>
-                                </div>
-                            </td>
-                        </tr>
-                        <th>По наличию:</th>
-                        <tr>
-                            <td>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="" value="">
-                                    <label class="form-check-label" for="">В наличии</label>
-                                </div>
-                            </td>
-                        </tr>
-
-                    </table>
-                    <input class="sub" type="submit" value="Принять"></form>
+                <table>
+                    <th>По категории:</th>
+                    <tr>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="type" id="all" value="Все" checked>
+                                <label class="form-check-label" for="protein">Все</label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="type" id="vitamins" value="Витамины">
+                                <label class="form-check-label" for="vitamins">Витамины</label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="type" id="protein"
+                                       value="Протеиновые батончики">
+                                <label class="form-check-label" for="protein">Протеиновые батончики</label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="type" id="izo" value="Изотоник">
+                                <label class="form-check-label" for="protein">Изотоник</label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="type" id="minerals"
+                                       value="Минералы и микроэлементы">
+                                <label class="form-check-label" for="protein">Минералы и микроэлементы</label>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
             </div>
             <div class="col-sm-8" style="border-left: 1px solid black">
-                <form autocomplete="off">
+                <form>
                     <input id="myInput" type="text" class="search" placeholder="Поиск по названию...">
                     <input type="button" onclick="sendAjax($('#myInput').val())"
-                                                class="search-but" value="Искать"
-                                                style="margin-left: 5px">
+                           class="search-but" value="Искать"
+                           style="margin-left: 5px">
                 </form>
                 <div class="container">
                     <div class="row" id="table">
                         <#list products as product>
-                            <div class="col"> <!--Общее для всех продуктов-->
+                            <div class="col">
                                 <a style="display: block; color: black !important;" href="/product?id=#{product.id}">
                                     <div class="card">
                                         <input type="hidden" name="product" value="id"/>
-                                        <!--Скрытое поле, результат чего отправляется на сервак при нажатии кнопки; value - PK продукта-->
                                         <img class="card-img-top" src="${product.imageProduct}" alt="Card image cap">
                                         <div class="card-body">
                                             <h5 class="card-title">${product.name}</h5>

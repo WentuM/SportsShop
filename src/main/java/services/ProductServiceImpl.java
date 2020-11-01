@@ -36,4 +36,14 @@ public class ProductServiceImpl implements ProductService{
     public List<Product> searchByName(String name) throws SQLException {
         return productDao.findListByName(name);
     }
+
+    @Override
+    public List<Product> searchByCategory(String name) throws SQLException {
+        return productDao.findListByCategory(name);
+    }
+
+    @Override
+    public List<Product> searchByCategoryAndName(String name, String category) throws SQLException {
+        return productDao.findListByCategoryAndName(name, category);
+    }
 }

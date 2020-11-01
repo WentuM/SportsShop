@@ -11,7 +11,6 @@ public class User {
     private String email;
     private String number;
     private String image;
-    private Order order;
 
 
     public String getName() {
@@ -68,13 +67,5 @@ public class User {
 
     public void setImage(String image) {
         this.image = image;
-    }
-
-    public Order getOrder() {
-        return order;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
     }
 }
